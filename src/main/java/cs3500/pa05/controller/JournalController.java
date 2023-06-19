@@ -87,6 +87,13 @@ public class JournalController implements IController {
   @FXML
   private Label maxEventCount;
 
+  @FXML
+  private Button blueThemeButton;
+  @FXML
+  private Button purpleThemeButton;
+  @FXML
+  private Button blackThemeButton;
+
   private static String bad_input = "BAD_INPUT";
 
 
