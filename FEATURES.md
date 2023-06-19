@@ -5,13 +5,10 @@
 - Persistence
 
 ## Section 2: Headlining Features
-
-
-## Section 3: Power Ups
-
+- In process of implementation
 
 ## Section 3: Power Ups
-
+- In process of implementation
 
 ## Section 4: Quality of Life
 
