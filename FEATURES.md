@@ -11,9 +11,6 @@
 ## Section 3: Power Ups
 -Weekly overview
 
-## Section 3: Power Ups
-
-
 ## Section 4: Quality of Life
 
 
