@@ -4,6 +4,7 @@ import cs3500.pa05.model.DayType;
 import cs3500.pa05.model.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskTest {
@@ -25,7 +26,8 @@ public class TaskTest {
 
   @Test
   public void testToStringNo() {
-    String expectedString = "Task Name: Test Task\n"
+    String expectedString = "Day: MONDAY\n"
+        + "Task Name: Test Task\n"
         + "Description: Task Description\n"
         + "Completed?:  No";
     assertEquals(expectedString, task.toString());
@@ -33,7 +35,8 @@ public class TaskTest {
 
   @Test
   public void testToStringYes() {
-    String expectedString = "Task Name: Test Task 2\n"
+    String expectedString = "Day: MONDAY\n"
+        + "Task Name: Test Task 2\n"
         + "Description: Task Description\n"
         + "Completed?:  Yes";
     assertEquals(expectedString, task2.toString());

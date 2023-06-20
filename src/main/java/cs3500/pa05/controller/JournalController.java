@@ -149,8 +149,6 @@ public class JournalController implements IController {
   private Button delete;
 
 
-
-
   private static String bad_input = "BAD_INPUT";
 
 
@@ -162,7 +160,7 @@ public class JournalController implements IController {
   private final ObjectMapper mapper = new ObjectMapper();
 
 
-  public JournalController(Stage stage, JournalWeek week){
+  public JournalController(Stage stage, JournalWeek week) {
     this.stage = stage;
     this.week = week;
   }
@@ -187,60 +185,61 @@ public class JournalController implements IController {
   }
 
   private void loadDays(List<DayJson> days) throws IOException {
-    for(DayJson d: days){
+    for (DayJson d : days) {
       if (d.day().equalsIgnoreCase(DayType.MONDAY.rep)) {
         loadTasks(monView, d.tasks());
-        loadEvents(monView,d.events());
+        loadEvents(monView, d.events());
       } else if (d.day().equalsIgnoreCase(DayType.TUESDAY.rep)) {
         loadTasks(tuesView, d.tasks());
-        loadEvents(tuesView,d.events());
+        loadEvents(tuesView, d.events());
       } else if (d.day().equalsIgnoreCase(DayType.WEDNESDAY.rep)) {
         loadTasks(wedView, d.tasks());
-        loadEvents(wedView,d.events());
+        loadEvents(wedView, d.events());
       } else if (d.day().equalsIgnoreCase(DayType.THURSDAY.rep)) {
         loadTasks(thursView, d.tasks());
-        loadEvents(thursView,d.events());
+        loadEvents(thursView, d.events());
       } else if (d.day().equalsIgnoreCase(DayType.FRIDAY.rep)) {
         loadTasks(friView, d.tasks());
-        loadEvents(friView,d.events());
+        loadEvents(friView, d.events());
       } else if (d.day().equalsIgnoreCase(DayType.SATURDAY.rep)) {
         loadTasks(satView, d.tasks());
-        loadEvents(satView,d.events());
-      } else  {
+        loadEvents(satView, d.events());
+      } else {
         loadTasks(sunView, d.tasks());
-        loadEvents(sunView,d.events());
+        loadEvents(sunView, d.events());
       }
     }
   }
 
-  private  void loadTasks(ListView<Button> view, List<TaskJson> tasks) throws IOException {
-    for(TaskJson t: tasks){
-      Task task = new Task(t.name(),t.description(),t.day(),t.bool());
-      week.addTask(task.getDay(),task);
-      view.getItems().addAll(inCalendar(task, task.getName(), task.toString(),true));
+  private void loadTasks(ListView<Button> view, List<TaskJson> tasks) throws IOException {
+    for (TaskJson t : tasks) {
+      Task task = new Task(t.name(), t.description(), t.day(), t.bool());
+      week.addTask(task.getDay(), task);
+      view.getItems().addAll(inCalendar(task, task.getName(), task.toString(), true));
     }
   }
 
-  private  void loadEvents(ListView<Button> view, List<EventJson> events) throws IOException {
-    for(EventJson e: events){
-      Event event = new Event(e.name(),e.description(),e.day(),e.start(),e.duration());
-      week.addEvent(event.getDay(),event);
-      view.getItems().addAll(inCalendar(event,event.getName(), event.toString(), false));
+  private void loadEvents(ListView<Button> view, List<EventJson> events) throws IOException {
+    for (EventJson e : events) {
+      Event event = new Event(e.name(), e.description(), e.day(), e.start(), e.duration());
+      week.addEvent(event.getDay(), event);
+      view.getItems().addAll(inCalendar(event, event.getName(), event.toString(), false));
     }
   }
+
   private void loadButtonsAndHeadings(WeekJson message) {
     weekTitle.setText(message.title());
     week.setTheme(message.theme());
     week.setTitle(message.title());
     week.setMaxEvents(message.maxEvents());
     week.setMaxTasks(message.maxTasks());
-    if(week.getMaxTasks() == Integer.MAX_VALUE){
+    if (week.getMaxTasks() == Integer.MAX_VALUE) {
       maxTaskCount.setText("Max Daily Tasks: N/A");
     }
-    if(week.getMaxEvents() == Integer.MAX_VALUE) {
+    if (week.getMaxEvents() == Integer.MAX_VALUE) {
       maxEventCount.setText("Max Daily Events: N/A");
     }
-    if(!(week.getMaxTasks() == Integer.MAX_VALUE) && !(week.getMaxEvents() == Integer.MAX_VALUE)) {
+    if (!(week.getMaxTasks() == Integer.MAX_VALUE) && !(week.getMaxEvents() == Integer.MAX_VALUE)) {
       maxTaskCount.setText("Max Daily Tasks: " + week.getMaxTasks());
       maxEventCount.setText("Max Daily Events: " + week.getMaxEvents());
     }
@@ -295,8 +294,8 @@ public class JournalController implements IController {
     royal.setOnAction(e -> {
       try {
         String s = week.getTheme();
-        s = s.substring(0,s.indexOf("y") + 1);
-          changeTheme(s+"RoyalWeek.fxml");
+        s = s.substring(0, s.indexOf("y") + 1);
+        changeTheme(s + "RoyalWeek.fxml");
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -304,8 +303,8 @@ public class JournalController implements IController {
     redYellow.setOnAction(e -> {
       try {
         String s = week.getTheme();
-        s = s.substring(0,s.indexOf("y") + 1);
-        changeTheme(s+"RedAndYellow.fxml");
+        s = s.substring(0, s.indexOf("y") + 1);
+        changeTheme(s + "RedAndYellow.fxml");
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -313,8 +312,8 @@ public class JournalController implements IController {
     pinkBlue.setOnAction(e -> {
       try {
         String s = week.getTheme();
-        s = s.substring(0,s.indexOf("y") + 1);
-        changeTheme(s+"BlueAndYellow.fxml");
+        s = s.substring(0, s.indexOf("y") + 1);
+        changeTheme(s + "BlueAndYellow.fxml");
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -322,9 +321,10 @@ public class JournalController implements IController {
     System.out.println(week.getTheme());
     sunday.setOnAction(e -> {
       try {
-        if(!week.getTheme().contains("Sunday")){
+        if (!week.getTheme().contains("Sunday")) {
           System.out.println(week.getTheme());
-          changeTheme("changedSchedules/Sunday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+          changeTheme("changedSchedules/Sunday" +
+              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -334,8 +334,9 @@ public class JournalController implements IController {
     });
     monday.setOnAction(e -> {
       try {
-        if(!week.getTheme().contains("Monday")){
-          changeTheme("changedSchedules/Monday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        if (!week.getTheme().contains("Monday")) {
+          changeTheme("changedSchedules/Monday" +
+              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -346,8 +347,9 @@ public class JournalController implements IController {
 
     tuesday.setOnAction(e -> {
       try {
-        if(!week.getTheme().contains("Tuesday")){
-          changeTheme("changedSchedules/Tuesday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        if (!week.getTheme().contains("Tuesday")) {
+          changeTheme("changedSchedules/Tuesday" +
+              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -358,8 +360,9 @@ public class JournalController implements IController {
 
     wednesday.setOnAction(e -> {
       try {
-        if(!week.getTheme().contains("Wednesday")){
-          changeTheme("changedSchedules/Wednesday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        if (!week.getTheme().contains("Wednesday")) {
+          changeTheme("changedSchedules/Wednesday" +
+              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -370,8 +373,9 @@ public class JournalController implements IController {
 
     thursday.setOnAction(e -> {
       try {
-        if(!week.getTheme().contains("Thursday")){
-          changeTheme("changedSchedules/Thursday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        if (!week.getTheme().contains("Thursday")) {
+          changeTheme("changedSchedules/Thursday" +
+              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -382,8 +386,9 @@ public class JournalController implements IController {
 
     friday.setOnAction(e -> {
       try {
-        if(!week.getTheme().contains("Friday")){
-          changeTheme("changedSchedules/Friday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        if (!week.getTheme().contains("Friday")) {
+          changeTheme("changedSchedules/Friday" +
+              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -394,8 +399,9 @@ public class JournalController implements IController {
 
     saturday.setOnAction(e -> {
       try {
-        if(!week.getTheme().contains("Saturday")){
-          changeTheme("changedSchedules/Saturday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        if (!week.getTheme().contains("Saturday")) {
+          changeTheme("changedSchedules/Saturday" +
+              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -417,7 +423,7 @@ public class JournalController implements IController {
     Files.walkFileTree(Paths.get(""), visitor);
     ArrayList<String> files = visitor.getBujoFiles();
     ArrayList<Button> comboButtons = new ArrayList<>();
-    for(String s: files) {
+    for (String s : files) {
       Button b = new Button(s);
       b.setOnAction(e -> {
         try {
@@ -436,10 +442,11 @@ public class JournalController implements IController {
     Pane root = (Pane) stage.getScene().getRoot();
     root.getChildren().clear();
     this.week.clear();
-    JournalView changeTheme = new JournalView(this,theme);
+    JournalView changeTheme = new JournalView(this, theme);
     stage.setScene(changeTheme.load());
     buttons();
   }
+
   private String saveToBujo() throws IOException {
     return week.saveToBujo();
   }
@@ -449,7 +456,9 @@ public class JournalController implements IController {
     weekTitle.setText(t);
     week.setTitle(t);
   }
-  private Button inCalendar(SchedulingItem item, String name, String popupMsg, boolean isTask) throws IOException {
+
+  private Button inCalendar(SchedulingItem item, String name, String popupMsg, boolean isTask)
+      throws IOException {
     Button button = new Button(name);
     Popup aPopup = new Popup();
     FXMLLoader loader;
@@ -460,9 +469,9 @@ public class JournalController implements IController {
     popupLabel.setText(popupMsg);
     button.setOnAction(e -> makePopup(aPopup));
     close.setOnAction(e -> aPopup.hide());
-    if(isTask) {
-      delete.setOnAction(e -> deleteTask((Task)item,button,aPopup));
-      edit.setOnAction(e -> editTask((Task)item,button,aPopup));
+    if (isTask) {
+      delete.setOnAction(e -> deleteTask((Task) item, button, aPopup));
+      edit.setOnAction(e -> editTask((Task) item, button, aPopup));
       Button complete = new Button("Mark as complete");
       complete.setOnAction(e -> {
         try {
@@ -473,13 +482,13 @@ public class JournalController implements IController {
       });
       aPopup.getContent().add(complete);
     } else {
-      delete.setOnAction(e -> deleteEvent((Event)item,button,aPopup));
-      edit.setOnAction(e -> editEvent((Event) item, button,aPopup));
+      delete.setOnAction(e -> deleteEvent((Event) item, button, aPopup));
+      edit.setOnAction(e -> editEvent((Event) item, button, aPopup));
     }
     return button;
   }
 
-  private void deleteTask(Task item,Button old, Popup pop) {
+  private void deleteTask(Task item, Button old, Popup pop) {
     pop.hide();
     Parent parent = old.getParent();
 
@@ -495,12 +504,13 @@ public class JournalController implements IController {
     view.getItems().remove(old);
     week.removeTask(item);
   }
-  private void editTask(Task item,Button old, Popup pop) {
-    deleteTask(item,old,pop);
+
+  private void editTask(Task item, Button old, Popup pop) {
+    deleteTask(item, old, pop);
     createTask();
   }
 
-  private void deleteEvent(Event item,Button old, Popup pop) {
+  private void deleteEvent(Event item, Button old, Popup pop) {
     pop.hide();
     Parent parent = old.getParent();
 
@@ -516,8 +526,9 @@ public class JournalController implements IController {
     view.getItems().remove(old);
     week.removeEvent(item);
   }
-  private void editEvent(Event item,Button old, Popup pop) {
-    deleteEvent(item,old,pop);
+
+  private void editEvent(Event item, Button old, Popup pop) {
+    deleteEvent(item, old, pop);
     //listBox.getChildren().remove(old);
     createEvent();
   }
@@ -528,6 +539,7 @@ public class JournalController implements IController {
     String file = saveToBujo();
     loadFile(file);
   }
+
   @FXML
   private void makePopup(Popup p) {
     p.show(this.stage);
@@ -541,11 +553,11 @@ public class JournalController implements IController {
       while (day.equals(bad_input)) {
         day = validateDay(getInfo("Enter the day"));
       }
-      if(week.getDaysTasks(day) >= week.getMaxTasks()){
+      if (week.getDaysTasks(day) >= week.getMaxTasks()) {
         showErrorMsg("Max Tasks Reached!");
       } else {
-        Task task = new Task(name,description,day, false);
-        week.addTask(day,task);
+        Task task = new Task(name, description, day, false);
+        week.addTask(day, task);
         properDay(day).getItems().addAll(inCalendar(task, name, task.toString(), true));
 
       }
@@ -573,7 +585,7 @@ public class JournalController implements IController {
 
         duration = validateDuration(getInfo("Enter the duration in minutes (an integer)"));
       }
-      if(week.getDaysEvents(day) >= week.getMaxEvents()){
+      if (week.getDaysEvents(day) >= week.getMaxEvents()) {
         showErrorMsg("Max Events Reached!");
       } else {
         Event event = new Event(name, description, day, time, duration);
@@ -610,28 +622,29 @@ public class JournalController implements IController {
     td.showAndWait();
     return td.getResult();
   }
+
   private String validateTime(String input) {
-   int hour;
-   int minute;
-   try {
-     hour = Integer.parseInt(input.substring(0,2));
-     minute = Integer.parseInt(input.substring(3));
-   } catch (NumberFormatException e) {
-     return bad_input;
-   }
-   if(hour <= 23 && minute <= 59 && input.charAt(2) == ':' && input.length() == 5) {
-     return input;
-   }
-   return bad_input;
+    int hour;
+    int minute;
+    try {
+      hour = Integer.parseInt(input.substring(0, 2));
+      minute = Integer.parseInt(input.substring(3));
+    } catch (NumberFormatException e) {
+      return bad_input;
+    }
+    if (hour <= 23 && minute <= 59 && input.charAt(2) == ':' && input.length() == 5) {
+      return input;
+    }
+    return bad_input;
   }
 
   private String validateDuration(String input) {
     try {
       Integer.parseInt(input);
-    } catch (NumberFormatException e){
+    } catch (NumberFormatException e) {
       return bad_input;
     }
-    if(Integer.parseInt(input) < 0) {
+    if (Integer.parseInt(input) < 0) {
       return bad_input;
     }
     return input;
@@ -705,7 +718,8 @@ public class JournalController implements IController {
     });
   }
 
-  private int validateInts(String string, Label label, int itemCount, String end) throws IOException {
+  private int validateInts(String string, Label label, int itemCount, String end)
+      throws IOException {
     int count = itemCount;
     try {
       count = Integer.parseInt(string);

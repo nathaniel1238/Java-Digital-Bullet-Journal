@@ -37,7 +37,7 @@ public class JournalWeek implements IWeek {
   }
 
   public void clear() {
-    //this.title = null;
+    this.title = null;
     this.maxEvents = Integer.MAX_VALUE;
     this.maxTasks = Integer.MAX_VALUE;
     for(Day d: days){
