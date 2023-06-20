@@ -24,6 +24,18 @@ public class JournalWeek implements IWeek {
     this.theme = theme;
   }
 
+  public void removeTask(Task t) {
+    for(Day d: days) {
+      d.removeTask(t);
+    }
+  }
+
+  public void removeEvent(Event e) {
+    for(Day d: days) {
+      d.removeEvent(e);
+    }
+  }
+
   public void clear() {
     //this.title = null;
     this.maxEvents = Integer.MAX_VALUE;
@@ -33,6 +45,13 @@ public class JournalWeek implements IWeek {
     }
   }
 
+  public ArrayList<String> getTaskList() {
+    ArrayList<String> taskList = new ArrayList<>();
+    for(Day d: days){
+      taskList.addAll(d.getTaskList());
+    }
+    return taskList;
+  }
   public void setTheme(String theme) {
     this.theme = theme;
   }

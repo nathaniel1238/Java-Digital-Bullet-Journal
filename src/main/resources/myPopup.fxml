@@ -19,6 +19,10 @@
                      </font>
                   </Label>
                   <Button fx:id="close" mnemonicParsing="false" text="Close" />
+                  <Label />
+                  <Button fx:id="edit" mnemonicParsing="false" text="Edit" />
+                  <Label />
+                  <Button fx:id="delete" mnemonicParsing="false" text="Delete" />
                </children>
             </VBox>
          </children>

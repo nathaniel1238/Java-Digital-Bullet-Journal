@@ -23,12 +23,25 @@ public class Task extends SchedulingItem{
     } else {
       completion = " No";
     }
-    return "Task Name: " + name + "\n"
+    return "Day: " + this.day + "\n"
+        + "Task Name: " + name + "\n"
         + "Description: " + description + "\n"
         + "Completed?: " + completion;
   }
 
   public TaskJson toJson() {
     return new TaskJson(this.name,this.description,this.day, this.isCompleted);
+  }
+
+  public boolean equals(Object o) {
+    if(!(o instanceof Task)) {
+      return false;
+    }
+    Task t = (Task) o;
+
+    return this.name.equals(t.name)
+        && this.day.equals(t.day)
+        && this.description.equals(t.description)
+        && this.isCompleted == t.isCompleted;
   }
 }

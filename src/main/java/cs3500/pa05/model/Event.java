@@ -28,4 +28,17 @@ public class Event extends SchedulingItem {
   public EventJson toJson() {
     return new EventJson(this.name,this.description,this.day,this.startTime,this.duration);
   }
+
+  public boolean equals(Object o) {
+    if(!(o instanceof Event)) {
+      return false;
+    }
+    Event e = (Event) o;
+
+    return this.name.equals(e.name)
+        && this.day.equals(e.day)
+        && this.description.equals(e.description)
+        && this.startTime.equals(e.startTime)
+        && this.duration.equals(e.duration);
+  }
 }
