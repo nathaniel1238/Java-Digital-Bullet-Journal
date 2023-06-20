@@ -2,17 +2,10 @@ package cs3500.pa05;
 
 
 import cs3500.pa05.controller.JournalController;
-import cs3500.pa05.model.IWeek;
 import cs3500.pa05.model.JournalWeek;
 import cs3500.pa05.view.JournalView;
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /**
@@ -28,9 +21,9 @@ public class Driver extends Application {
   @Override
   public void start(Stage stage) throws IOException {
 
-    JournalWeek week = new JournalWeek("RoyalWeek.fxml");
+    JournalWeek week = new JournalWeek("changedSchedules/MondayRoyalWeek.fxml");
     JournalController controller = new JournalController(stage, week);
-    JournalView wgvi = new JournalView(controller,"RoyalWeek.fxml");
+    JournalView wgvi = new JournalView(controller, "changedSchedules/MondayRoyalWeek.fxml");
 
 
     try {

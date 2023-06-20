@@ -24,8 +24,20 @@ public class JournalWeek implements IWeek {
     this.theme = theme;
   }
 
+  public void removeTask(Task t) {
+    for(Day d: days) {
+      d.removeTask(t);
+    }
+  }
+
+  public void removeEvent(Event e) {
+    for(Day d: days) {
+      d.removeEvent(e);
+    }
+  }
+
   public void clear() {
-    this.title = null;
+    //this.title = null;
     this.maxEvents = Integer.MAX_VALUE;
     this.maxTasks = Integer.MAX_VALUE;
     for(Day d: days){
@@ -33,6 +45,13 @@ public class JournalWeek implements IWeek {
     }
   }
 
+  public ArrayList<String> getTaskList() {
+    ArrayList<String> taskList = new ArrayList<>();
+    for(Day d: days){
+      taskList.addAll(d.getTaskList());
+    }
+    return taskList;
+  }
   public void setTheme(String theme) {
     this.theme = theme;
   }
@@ -115,7 +134,7 @@ public class JournalWeek implements IWeek {
       e.printStackTrace();
       return null;
     }
-    String file = "bujoFiles/" + this.title + ".bujo";
+    String file = this.title + ".bujo";
     System.out.println(node);
     Write.writeToFile(jsonString, file);
     return file;

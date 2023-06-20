@@ -17,6 +17,32 @@ public class Day {
     this.tasks = new ArrayList<>();
   }
 
+  public void removeTask(Task t) {
+    for(Task task: tasks) {
+      if(task.equals(t)){
+        tasks.remove(task);
+        return;
+      }
+    }
+  }
+
+  public void removeEvent(Event e) {
+    for(Event event: events) {
+      if(event.equals(e)){
+        events.remove(event);
+        return;
+      }
+    }
+  }
+
+  public ArrayList<String> getTaskList() {
+    ArrayList<String> taskList = new ArrayList<>();
+    for(Task t: tasks){
+      taskList.add(t.toString());
+    }
+    return taskList;
+  }
+
   public void addEvent(Event e){
     events.add(e);
   }
