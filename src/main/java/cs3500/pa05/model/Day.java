@@ -35,6 +35,16 @@ public class Day {
     }
   }
 
+  public int getCompletedTasks() {
+    int count = 0;
+    for(Task t: tasks){
+      if(t.getCompleted()) {
+        count++;
+      }
+    }
+    return count;
+  }
+
   public ArrayList<String> getTaskList() {
     ArrayList<String> taskList = new ArrayList<>();
     for(Task t: tasks){

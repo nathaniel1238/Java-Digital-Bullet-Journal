@@ -270,6 +270,30 @@
                         </HBox>
                         <HBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="400.0">
                            <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="125.0" prefWidth="192.0">
+                                 <children>
+                                    <Label text="Week Statistics" textFill="WHITE">
+                                       <font>
+                                          <Font name="Times New Roman Bold Italic" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalEvents" text="Total Events: " textFill="WHITE">
+                                       <font>
+                                          <Font name="Times New Roman Bold Italic" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalTasks" text="Total Tasks: " textFill="WHITE">
+                                       <font>
+                                          <Font name="Times New Roman Bold Italic" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tasksComplete" text="Tasks Completed: " textFill="WHITE">
+                                       <font>
+                                          <Font name="Times New Roman Bold Italic" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="1014.0">
                                  <children>
                                     <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="1014.0">
