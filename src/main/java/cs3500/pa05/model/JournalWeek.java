@@ -120,5 +120,4 @@ public class JournalWeek implements IWeek {
     Write.writeToFile(jsonString, file);
     return file;
   }
-
 }
