@@ -56,8 +56,7 @@ public class BujoFileWalker implements FileVisitor<Path> {
   public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
     if (file.toString().contains(".bujo")) {
       String path = file.toString();
-      String fileName = path.substring(path.lastIndexOf("/") + 1);
-      bujoFiles.add(fileName);
+      bujoFiles.add(path);
     }
 
     return FileVisitResult.CONTINUE;

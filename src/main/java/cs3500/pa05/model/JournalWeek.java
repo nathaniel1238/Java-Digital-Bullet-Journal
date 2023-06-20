@@ -25,7 +25,7 @@ public class JournalWeek implements IWeek {
   }
 
   public void clear() {
-    this.title = null;
+    //this.title = null;
     this.maxEvents = Integer.MAX_VALUE;
     this.maxTasks = Integer.MAX_VALUE;
     for(Day d: days){
@@ -115,7 +115,7 @@ public class JournalWeek implements IWeek {
       e.printStackTrace();
       return null;
     }
-    String file = "bujoFiles/" + this.title + ".bujo";
+    String file = this.title + ".bujo";
     System.out.println(node);
     Write.writeToFile(jsonString, file);
     return file;

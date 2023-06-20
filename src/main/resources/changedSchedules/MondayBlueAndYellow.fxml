@@ -28,7 +28,7 @@
                </Label>
                <HBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="358.0">
                   <children>
-                     <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="699.0">
+                     <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="677.0">
                         <children>
                            <Label fx:id="maxTaskCount" text="Max Daily Tasks: N/A" textFill="WHITE">
                               <font>
@@ -39,7 +39,7 @@
                               <font>
                                  <Font name="Times New Roman Bold Italic" size="13.0" />
                               </font></Label>
-                           <HBox alignment="CENTER" prefHeight="30.0" prefWidth="353.0">
+                           <HBox alignment="CENTER" prefHeight="30.0" prefWidth="302.0">
                               <children>
                                  <Label fx:id="weekTitle" textFill="WHITE">
                                     <font>
@@ -49,7 +49,7 @@
                            </HBox>
                         </children>
                      </HBox>
-                     <MenuButton fx:id="themeButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: #F5F5DC;" text="Load">
+                     <MenuButton fx:id="themeButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="63.0" style="-fx-background-color: #F5F5DC;" text="Load">
                        <items>
                          <MenuItem mnemonicParsing="false">
                               <graphic>
@@ -176,6 +176,41 @@
                      <ComboBox fx:id="comboC" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="79.0" promptText="Open" style="-fx-background-color: #F5F5DC;" />
                      <MenuButton fx:id="maxButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="64.0" style="-fx-background-color: #F5F5DC;" text="Set">
                        <items>
+                           <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Button fx:id="sunday" mnemonicParsing="false" text="Set First as Sunday" />
+                              </graphic>
+                           </MenuItem>
+                           <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Button fx:id="monday" mnemonicParsing="false" text="Set First as Monday" />
+                              </graphic>
+                           </MenuItem>
+                           <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Button fx:id="tuesday" mnemonicParsing="false" text="Set First as Tuesday" />
+                              </graphic>
+                           </MenuItem>
+                           <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Button fx:id="wednesday" mnemonicParsing="false" text="Set First as Wednesday" />
+                              </graphic>
+                           </MenuItem>
+                           <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Button fx:id="thursday" mnemonicParsing="false" text="Set First as Thursday" />
+                              </graphic>
+                           </MenuItem>
+                           <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Button fx:id="friday" mnemonicParsing="false" text="Set First as Friday" />
+                              </graphic>
+                           </MenuItem>
+                           <MenuItem mnemonicParsing="false">
+                              <graphic>
+                                 <Button fx:id="saturday" mnemonicParsing="false" text="Set First as Saturday" />
+                              </graphic>
+                           </MenuItem>
                            <MenuItem mnemonicParsing="false">
                               <graphic>
                                  <Button fx:id="title" mnemonicParsing="false" text="Title" />

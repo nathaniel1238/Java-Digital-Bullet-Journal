@@ -13,19 +13,14 @@ import cs3500.pa05.model.Task;
 import cs3500.pa05.model.TaskJson;
 import cs3500.pa05.model.WeekJson;
 import cs3500.pa05.view.JournalView;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -35,7 +30,6 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -102,6 +96,27 @@ public class JournalController implements IController {
 
   @FXML
   private Button close;
+
+  @FXML
+  private Button sunday;
+
+  @FXML
+  private Button monday;
+  @FXML
+  private Button tuesday;
+
+  @FXML
+  private Button wednesday;
+
+  @FXML
+  private Button thursday;
+
+  @FXML
+  private Button friday;
+
+  @FXML
+  private Button saturday;
+
 
 
   private static String bad_input = "BAD_INPUT";
@@ -219,21 +234,111 @@ public class JournalController implements IController {
     });
     royal.setOnAction(e -> {
       try {
-        changeTheme("RoyalWeek.fxml");
+        String s = week.getTheme();
+        s = s.substring(0,s.indexOf("y") + 1);
+          changeTheme(s+"RoyalWeek.fxml");
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
     });
     redYellow.setOnAction(e -> {
       try {
-        changeTheme("RedAndYellow.fxml");
+        String s = week.getTheme();
+        s = s.substring(0,s.indexOf("y") + 1);
+        changeTheme(s+"RedAndYellow.fxml");
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
     });
     pinkBlue.setOnAction(e -> {
       try {
-        changeTheme("BlueAndYellow.fxml");
+        String s = week.getTheme();
+        s = s.substring(0,s.indexOf("y") + 1);
+        changeTheme(s+"BlueAndYellow.fxml");
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+    System.out.println(week.getTheme());
+    sunday.setOnAction(e -> {
+      try {
+        if(!week.getTheme().contains("Sunday")){
+          System.out.println(week.getTheme());
+          changeTheme("changedSchedules/Sunday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        } else {
+          changeTheme(week.getTheme());
+        }
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+    monday.setOnAction(e -> {
+      try {
+        if(!week.getTheme().contains("Monday")){
+          changeTheme("changedSchedules/Monday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        } else {
+          changeTheme(week.getTheme());
+        }
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+
+    tuesday.setOnAction(e -> {
+      try {
+        if(!week.getTheme().contains("Tuesday")){
+          changeTheme("changedSchedules/Tuesday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        } else {
+          changeTheme(week.getTheme());
+        }
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+
+    wednesday.setOnAction(e -> {
+      try {
+        if(!week.getTheme().contains("Wednesday")){
+          changeTheme("changedSchedules/Wednesday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        } else {
+          changeTheme(week.getTheme());
+        }
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+
+    thursday.setOnAction(e -> {
+      try {
+        if(!week.getTheme().contains("Thursday")){
+          changeTheme("changedSchedules/Thursday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        } else {
+          changeTheme(week.getTheme());
+        }
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+
+    friday.setOnAction(e -> {
+      try {
+        if(!week.getTheme().contains("Friday")){
+          changeTheme("changedSchedules/Friday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        } else {
+          changeTheme(week.getTheme());
+        }
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+
+    saturday.setOnAction(e -> {
+      try {
+        if(!week.getTheme().contains("Saturday")){
+          changeTheme("changedSchedules/Saturday" + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+        } else {
+          changeTheme(week.getTheme());
+        }
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -249,7 +354,7 @@ public class JournalController implements IController {
 
   private void initComboButton() throws IOException {
     BujoFileWalker visitor = new BujoFileWalker();
-    Files.walkFileTree(Paths.get("bujoFiles"), visitor);
+    Files.walkFileTree(Paths.get(""), visitor);
     ArrayList<String> files = visitor.getBujoFiles();
     ArrayList<Button> comboButtons = new ArrayList<>();
     for(String s: files) {
@@ -287,7 +392,16 @@ public class JournalController implements IController {
   private Button inCalendar(SchedulingItem item, String name, String popupMsg, boolean isTask) throws IOException {
     Button button = new Button(name);
     Popup aPopup = new Popup();
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup"+ week.getTheme()));
+    FXMLLoader loader;
+    loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup.fxml"));
+
+//    if(week.getTheme().contains("Sunday")){
+//      String pop = week.getTheme();
+//      loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup"+
+//          pop.substring(pop.lastIndexOf("Sunday") + "Sunday".length())));
+//    } else {
+//      loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup" + week.getTheme()));
+//    }
     loader.setController(this);
     Scene s = loader.load();
     aPopup.getContent().add(s.getRoot());
@@ -461,7 +575,14 @@ public class JournalController implements IController {
 
   private void showErrorMsg(String str) throws IOException {
     Popup aPopup = new Popup();
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup"+ week.getTheme()));
+    FXMLLoader loader;
+    if(week.getTheme().contains("Sunday")){
+      String pop = week.getTheme();
+      loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup"+
+          pop.substring("Sunday".length())));
+    } else {
+      loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup" + week.getTheme()));
+    }
     loader.setController(this);
     Scene s = loader.load();
     aPopup.getContent().add(s.getRoot());
