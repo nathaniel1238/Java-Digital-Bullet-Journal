@@ -270,6 +270,30 @@
                         </HBox>
                         <HBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="400.0">
                            <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="125.0" prefWidth="192.0">
+                                 <children>
+                                    <Label text="Week Statistics">
+                                       <font>
+                                          <Font name="Tsukushi A Round Gothic Regular" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalEvents" text="Total Events: ">
+                                       <font>
+                                          <Font name="Tsukushi A Round Gothic Regular" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="totalTasks" text="Total Tasks: ">
+                                       <font>
+                                          <Font name="Tsukushi A Round Gothic Regular" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tasksComplete" text="Tasks Completed: ">
+                                       <font>
+                                          <Font name="Tsukushi A Round Gothic Regular" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="1014.0" style="-fx-border-color: #000000;">
                                  <children>
                                     <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="1014.0">

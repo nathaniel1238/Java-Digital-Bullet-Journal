@@ -148,6 +148,15 @@ public class JournalController implements IController {
   @FXML
   private Button delete;
 
+  @FXML
+  private Label totalEvents;
+
+  @FXML
+  private Label totalTasks;
+
+  @FXML
+  private Label tasksComplete;
+
 
   private static String bad_input = "BAD_INPUT";
 
@@ -457,6 +466,21 @@ public class JournalController implements IController {
     week.setTitle(t);
   }
 
+  private void setStatistics() {
+    int taskTotal = week.getTotalTasks();
+    int eventTotal = week.getTotalEvents();
+    int completedTasks = week.getCompletedTasks();
+    double percentageComplete = 0;
+    if(taskTotal != 0) {
+      percentageComplete = (double) completedTasks/taskTotal * 100;
+    }
+    String formattedValue = String.format("%.2f", percentageComplete);
+    totalTasks.setText("Total Tasks: " + taskTotal);
+    totalEvents.setText("Total Events: " + eventTotal);
+    tasksComplete.setText("Tasks Completed: " + formattedValue + "%");
+
+
+  }
   private Button inCalendar(SchedulingItem item, String name, String popupMsg, boolean isTask)
       throws IOException {
     Button button = new Button(name);
@@ -485,6 +509,7 @@ public class JournalController implements IController {
       delete.setOnAction(e -> deleteEvent((Event) item, button, aPopup));
       edit.setOnAction(e -> editEvent((Event) item, button, aPopup));
     }
+    setStatistics();
     return button;
   }
 
@@ -503,6 +528,7 @@ public class JournalController implements IController {
 
     view.getItems().remove(old);
     week.removeTask(item);
+    setStatistics();
   }
 
   private void editTask(Task item, Button old, Popup pop) {

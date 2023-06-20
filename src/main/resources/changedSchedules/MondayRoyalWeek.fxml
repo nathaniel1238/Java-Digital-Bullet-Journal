@@ -21,7 +21,7 @@
    <root>
       <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="1226.0">
          <children>
-            <SplitPane fx:id="splitPane" dividerPositions="0.1670751633986928" opacity="0.95" pickOnBounds="false" prefHeight="202.0" prefWidth="1226.0">
+            <SplitPane fx:id="splitPane" dividerPositions="0.01919934640522876" opacity="0.95" pickOnBounds="false" prefHeight="202.0" prefWidth="1226.0">
                <items>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -316,8 +316,96 @@
                               </MenuButton>
                            </children>
                         </HBox>
-                        <HBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="1014.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="125.0" prefWidth="1014.0">
                            <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="125.0" prefWidth="192.0">
+                                 <children>
+                                    <Label text="Week Statistics">
+                                       <font>
+                                          <Font name="Wawati SC Regular" size="18.0" />
+                                       </font>
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="0.6052631735801697" green="0.5127924084663391" blue="0.5127924084663391" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="0.7921568751335144" blue="0.27450981736183167" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                    </Label>
+                                    <Label fx:id="totalEvents" text="Total Events: ">
+                                       <font>
+                                          <Font name="Wawati SC Regular" size="13.0" />
+                                       </font>
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="0.6052631735801697" green="0.5127924084663391" blue="0.5127924084663391" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="0.7921568751335144" blue="0.27450981736183167" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                    </Label>
+                                    <Label fx:id="totalTasks" text="Total Tasks: ">
+                                       <font>
+                                          <Font name="Wawati SC Regular" size="13.0" />
+                                       </font>
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="0.6052631735801697" green="0.5127924084663391" blue="0.5127924084663391" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="0.7921568751335144" blue="0.27450981736183167" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                    </Label>
+                                    <Label fx:id="tasksComplete" text="Tasks Completed: ">
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="0.6052631735801697" green="0.5127924084663391" blue="0.5127924084663391" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="0.7921568751335144" blue="0.27450981736183167" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                       <font>
+                                          <Font name="Wawati SC Regular" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="1014.0">
                                  <children>
                                     <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="1014.0">

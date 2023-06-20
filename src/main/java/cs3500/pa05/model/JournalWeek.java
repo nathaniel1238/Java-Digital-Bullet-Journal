@@ -36,6 +36,29 @@ public class JournalWeek implements IWeek {
     }
   }
 
+  public int getTotalTasks() {
+    int count = 0;
+    for(Day d: days){
+      count += d.getTasks();
+    }
+    return count;
+  }
+
+  public int getCompletedTasks() {
+    int count = 0;
+    for(Day d: days){
+      count += d.getCompletedTasks();
+    }
+    return count;
+  }
+
+  public int getTotalEvents() {
+    int count = 0;
+    for(Day d: days){
+      count += d.getEvents();
+    }
+    return count;
+  }
   public void clear() {
     this.title = null;
     this.maxEvents = Integer.MAX_VALUE;
