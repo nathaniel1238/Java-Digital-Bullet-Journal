@@ -5,13 +5,11 @@
 - Persistence
 
 ## Section 2: Headlining Features
-
-
-## Section 3: Power Ups
-
+- Themes
+- Task Queue
 
 ## Section 3: Power Ups
-
+-Weekly overview
 
 ## Section 4: Quality of Life
 

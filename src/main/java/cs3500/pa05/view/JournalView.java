@@ -9,9 +9,9 @@ public class JournalView implements IView{
 
   private FXMLLoader loader;
 
-  public JournalView(JournalController controller) {
+  public JournalView(JournalController controller, String theme) {
     this.loader = new FXMLLoader();
-    this.loader.setLocation(getClass().getClassLoader().getResource("NewWeek.fxml"));
+    this.loader.setLocation(getClass().getClassLoader().getResource(theme));
     this.loader.setController(controller);
   }
   /**

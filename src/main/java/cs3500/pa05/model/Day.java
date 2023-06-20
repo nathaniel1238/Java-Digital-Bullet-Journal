@@ -12,6 +12,11 @@ public class Day {
     this.day = day;
   }
 
+  public  void clear() {
+    this.events = new ArrayList<>();
+    this.tasks = new ArrayList<>();
+  }
+
   public void addEvent(Event e){
     events.add(e);
   }
@@ -25,6 +30,7 @@ public class Day {
   }
 
   public int getTasks() {
+
     return tasks.size();
   }
 
