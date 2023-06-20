@@ -8,7 +8,7 @@ public class Day {
   private ArrayList<Event> events = new ArrayList<>();
   private ArrayList<Task> tasks = new ArrayList<>();
 
-  Day(String day) {
+  public Day(String day) {
     this.day = day;
   }
 
