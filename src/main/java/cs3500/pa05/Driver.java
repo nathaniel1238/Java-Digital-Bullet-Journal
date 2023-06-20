@@ -28,9 +28,9 @@ public class Driver extends Application {
   @Override
   public void start(Stage stage) throws IOException {
 
-    JournalWeek week = new JournalWeek();
+    JournalWeek week = new JournalWeek("RoyalWeek.fxml");
     JournalController controller = new JournalController(stage, week);
-    JournalView wgvi = new JournalView(controller);
+    JournalView wgvi = new JournalView(controller,"RoyalWeek.fxml");
 
 
     try {

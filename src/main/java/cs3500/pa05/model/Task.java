@@ -3,9 +3,9 @@ package cs3500.pa05.model;
 public class Task extends SchedulingItem{
   private boolean isCompleted;
 
-  public Task(String itemName, String description, String day) {
+  public Task(String itemName, String description, String day, Boolean isCompleted) {
     super(itemName,description,day);
-    this.isCompleted = false;
+    this.isCompleted = isCompleted;
   }
 
   public void setCompleted() {
@@ -17,9 +17,15 @@ public class Task extends SchedulingItem{
   }
 
   public String toString() {
+    String completion;
+    if(isCompleted) {
+      completion = " Yes";
+    } else {
+      completion = " No";
+    }
     return "Task Name: " + name + "\n"
         + "Description: " + description + "\n"
-        + "Completed?: " + isCompleted;
+        + "Completed?: " + completion;
   }
 
   public TaskJson toJson() {

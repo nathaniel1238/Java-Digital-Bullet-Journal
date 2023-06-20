@@ -8,9 +8,11 @@ import cs3500.pa05.model.DayType;
 import cs3500.pa05.model.Event;
 import cs3500.pa05.model.EventJson;
 import cs3500.pa05.model.JournalWeek;
+import cs3500.pa05.model.SchedulingItem;
 import cs3500.pa05.model.Task;
 import cs3500.pa05.model.TaskJson;
 import cs3500.pa05.model.WeekJson;
+import cs3500.pa05.view.JournalView;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -23,6 +25,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,6 +34,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -88,11 +93,16 @@ public class JournalController implements IController {
   private Label maxEventCount;
 
   @FXML
-  private Button blueThemeButton;
+  private Button royal;
+
   @FXML
-  private Button purpleThemeButton;
+  private Button redYellow;
   @FXML
-  private Button blackThemeButton;
+  private Button pinkBlue;
+
+  @FXML
+  private Button close;
+
 
   private static String bad_input = "BAD_INPUT";
 
@@ -110,14 +120,17 @@ public class JournalController implements IController {
     this.week = week;
   }
 
-  private void loadFile(String s) throws FileNotFoundException {
+  private void loadFile(String s) throws IOException {
+
     fileReader = new FileReader(s);
 
     try {
       JsonParser parser = this.mapper.getFactory().createParser(this.fileReader);
       WeekJson message = parser.readValueAs(WeekJson.class);
+      clear(message.theme());
       loadButtonsAndHeadings(message);
       loadDays(message.days());
+
 
     } catch (IOException e) {
 
@@ -154,9 +167,9 @@ public class JournalController implements IController {
 
   private  void loadTasks(ListView<Button> view, List<TaskJson> tasks) throws IOException {
     for(TaskJson t: tasks){
-      Task task = new Task(t.name(),t.description(),t.day());
+      Task task = new Task(t.name(),t.description(),t.day(),t.bool());
       week.addTask(task.getDay(),task);
-      view.getItems().addAll(inCalendar(task.getName(), task.toString()));
+      view.getItems().addAll(inCalendar(task, task.getName(), task.toString(),true));
     }
   }
 
@@ -164,11 +177,12 @@ public class JournalController implements IController {
     for(EventJson e: events){
       Event event = new Event(e.name(),e.description(),e.day(),e.start(),e.duration());
       week.addEvent(event.getDay(),event);
-      view.getItems().addAll(inCalendar(event.getName(), event.toString()));
+      view.getItems().addAll(inCalendar(event,event.getName(), event.toString(), false));
     }
   }
   private void loadButtonsAndHeadings(WeekJson message) {
     weekTitle.setText(message.title());
+    week.setTheme(message.theme());
     week.setTitle(message.title());
     week.setMaxEvents(message.maxEvents());
     week.setMaxTasks(message.maxTasks());
@@ -186,6 +200,10 @@ public class JournalController implements IController {
 
   @FXML
   public void run() throws IllegalStateException, IOException {
+    buttons();
+  }
+
+  private void buttons() throws IOException {
     initComboButton();
     task.setOnAction(e -> createTask());
     event.setOnAction(e -> createEvent());
@@ -199,19 +217,48 @@ public class JournalController implements IController {
         throw new RuntimeException(ex);
       }
     });
+    royal.setOnAction(e -> {
+      try {
+        changeTheme("RoyalWeek.fxml");
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+    redYellow.setOnAction(e -> {
+      try {
+        changeTheme("RedAndYellow.fxml");
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+    pinkBlue.setOnAction(e -> {
+      try {
+        changeTheme("BlueAndYellow.fxml");
+      } catch (IOException ex) {
+        throw new RuntimeException(ex);
+      }
+    });
+  }
+
+  private void changeTheme(String theme) throws IOException {
+    week.setTheme(theme);
+    String file = saveToBujo();
+    clear(theme);
+    loadFile(file);
   }
 
   private void initComboButton() throws IOException {
     BujoFileWalker visitor = new BujoFileWalker();
-    Files.walkFileTree(Paths.get(""), visitor);
+    Files.walkFileTree(Paths.get("bujoFiles"), visitor);
     ArrayList<String> files = visitor.getBujoFiles();
     ArrayList<Button> comboButtons = new ArrayList<>();
     for(String s: files) {
       Button b = new Button(s);
       b.setOnAction(e -> {
         try {
+          changeTheme(week.getTheme());
           loadFile(s);
-        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
           throw new RuntimeException(ex);
         }
       });
@@ -219,8 +266,17 @@ public class JournalController implements IController {
     }
     comboC.getItems().addAll(comboButtons);
   }
-  private void saveToBujo() throws IOException {
-    week.saveToBujo();
+
+  private void clear(String theme) throws IOException {
+    Pane root = (Pane) stage.getScene().getRoot();
+    root.getChildren().clear();
+    this.week.clear();
+    JournalView changeTheme = new JournalView(this,theme);
+    stage.setScene(changeTheme.load());
+    buttons();
+  }
+  private String saveToBujo() throws IOException {
+    return week.saveToBujo();
   }
 
   private void setTitle() {
@@ -228,21 +284,36 @@ public class JournalController implements IController {
     weekTitle.setText(t);
     week.setTitle(t);
   }
-  private Button inCalendar(String name, String popupMsg) throws IOException {
+  private Button inCalendar(SchedulingItem item, String name, String popupMsg, boolean isTask) throws IOException {
     Button button = new Button(name);
     Popup aPopup = new Popup();
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup"+ week.getTheme()));
     loader.setController(this);
     Scene s = loader.load();
     aPopup.getContent().add(s.getRoot());
     popupLabel.setText(popupMsg);
     button.setOnAction(e -> makePopup(aPopup));
-    Button b = new Button("Close");
-    b.setOnAction(e -> aPopup.hide());
-    aPopup.getContent().add(b);
+    close.setOnAction(e -> aPopup.hide());
+    if(isTask) {
+      Button complete = new Button("Mark as complete");
+      complete.setOnAction(e -> {
+        try {
+          setComplete((Task) item, aPopup);
+        } catch (IOException ex) {
+          throw new RuntimeException(ex);
+        }
+      });
+      aPopup.getContent().add(complete);
+    }
     return button;
   }
 
+  private void setComplete(Task task, Popup p) throws IOException {
+    p.hide();
+    task.setCompleted();
+    String file = saveToBujo();
+    loadFile(file);
+  }
   @FXML
   private void makePopup(Popup p) {
     p.show(this.stage);
@@ -259,9 +330,9 @@ public class JournalController implements IController {
       if(week.getDaysTasks(day) >= week.getMaxTasks()){
         showErrorMsg("Max Tasks Reached!");
       } else {
-        Task task = new Task(name,description,day);
-        properDay(day).getItems().addAll(inCalendar(name, task.toString()));
+        Task task = new Task(name,description,day, false);
         week.addTask(day,task);
+        properDay(day).getItems().addAll(inCalendar(task, name, task.toString(), true));
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -291,8 +362,9 @@ public class JournalController implements IController {
         showErrorMsg("Max Events Reached!");
       } else {
         Event event = new Event(name, description, day, time, duration);
-        properDay(day).getItems().addAll(inCalendar(name, event.toString()));
         week.addEvent(day, event);
+        properDay(day).getItems().addAll(inCalendar(event, name, event.toString(), false));
+
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -312,7 +384,7 @@ public class JournalController implements IController {
       return friView;
     } else if (input.equalsIgnoreCase(DayType.SATURDAY.rep)) {
       return satView;
-    } else  {
+    } else {
       return sunView;
     }
   }
@@ -328,11 +400,11 @@ public class JournalController implements IController {
    int minute;
    try {
      hour = Integer.parseInt(input.substring(0,2));
-     minute = Integer.parseInt(input.substring(4));
+     minute = Integer.parseInt(input.substring(3));
    } catch (NumberFormatException e) {
      return bad_input;
    }
-   if(hour <= 23 && minute <= 59 && input.charAt(2) == ':') {
+   if(hour <= 23 && minute <= 59 && input.charAt(2) == ':' && input.length() == 5) {
      return input;
    }
    return bad_input;
@@ -342,6 +414,9 @@ public class JournalController implements IController {
     try {
       Integer.parseInt(input);
     } catch (NumberFormatException e){
+      return bad_input;
+    }
+    if(Integer.parseInt(input) < 0) {
       return bad_input;
     }
     return input;
@@ -386,15 +461,13 @@ public class JournalController implements IController {
 
   private void showErrorMsg(String str) throws IOException {
     Popup aPopup = new Popup();
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup"+ week.getTheme()));
     loader.setController(this);
     Scene s = loader.load();
     aPopup.getContent().add(s.getRoot());
     popupLabel.setText(str);
     aPopup.show(this.stage);
-    Button b = new Button("Close");
-    b.setOnAction(e -> aPopup.hide());
-    aPopup.getContent().add(b);
+    close.setOnAction(e -> aPopup.hide());
   }
 
   private void setTasks() {
@@ -405,7 +478,11 @@ public class JournalController implements IController {
         int newCount = validateInts(string, maxTaskCount, week.getMaxTasks(), "Tasks: ");
         week.setMaxTasks(newCount);
       } catch (IOException e) {
-
+        try {
+          showErrorMsg("Not a valid integer!");
+        } catch (IOException ex) {
+          throw new RuntimeException(ex);
+        }
       }
     });
   }
@@ -416,16 +493,7 @@ public class JournalController implements IController {
       count = Integer.parseInt(string);
       label.setText("Max Daily " + end + string);
     } catch (NumberFormatException exe) {
-      Popup aPopup = new Popup();
-      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup.fxml"));
-      loader.setController(this);
-      Scene s = loader.load();
-      aPopup.getContent().add(s.getRoot());
-      popupLabel.setText("Not a valid integer!");
-      aPopup.show(this.stage);
-      Button b = new Button("Close");
-      b.setOnAction(e -> aPopup.hide());
-      aPopup.getContent().add(b);
+      showErrorMsg("Not a valid integer!");
     }
     return count;
   }

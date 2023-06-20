@@ -18,6 +18,29 @@ public class JournalWeek implements IWeek {
 
   private int maxTasks = Integer.MAX_VALUE;
 
+  private String theme;
+
+  public JournalWeek(String theme) {
+    this.theme = theme;
+  }
+
+  public void clear() {
+    this.title = null;
+    this.maxEvents = Integer.MAX_VALUE;
+    this.maxTasks = Integer.MAX_VALUE;
+    for(Day d: days){
+      d.clear();
+    }
+  }
+
+  public void setTheme(String theme) {
+    this.theme = theme;
+  }
+
+  public String getTheme() {
+    return this.theme;
+  }
+
   public void setMaxEvents(int num) {
     this.maxEvents = num;
   }
@@ -76,13 +99,13 @@ public class JournalWeek implements IWeek {
     return -1;
   }
 
-  public void saveToBujo() throws IOException {
+  public String saveToBujo() throws IOException {
 
     List<DayJson> daysJson = new ArrayList<>();
     for(Day d: days){
       daysJson.add(d.toJson());
     }
-    WeekJson weekJson = new WeekJson(this.title,this.maxTasks,this.maxEvents,daysJson);
+    WeekJson weekJson = new WeekJson(this.title,this.maxTasks,this.maxEvents,this.theme, daysJson);
     JsonNode node = JsonUtils.serializeRecord(weekJson);
     ObjectMapper objectMapper = new ObjectMapper();
     String jsonString;
@@ -90,11 +113,12 @@ public class JournalWeek implements IWeek {
       jsonString = objectMapper.writeValueAsString(node);
     } catch (IOException e) {
       e.printStackTrace();
-      return;
+      return null;
     }
+    String file = "bujoFiles/" + this.title + ".bujo";
     System.out.println(node);
-    Write.writeToFile(jsonString, this.title + ".bujo");
+    Write.writeToFile(jsonString, file);
+    return file;
   }
-
 
 }
