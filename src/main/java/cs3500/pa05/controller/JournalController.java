@@ -249,7 +249,7 @@ public class JournalController implements IController {
 
   private void initComboButton() throws IOException {
     BujoFileWalker visitor = new BujoFileWalker();
-    Files.walkFileTree(Paths.get("bujoFiles"), visitor);
+    Files.walkFileTree(Paths.get(""), visitor);
     ArrayList<String> files = visitor.getBujoFiles();
     ArrayList<Button> comboButtons = new ArrayList<>();
     for(String s: files) {
