@@ -1,18 +1,18 @@
 package cs3500.pa05;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import cs3500.pa05.model.Theme;
-import org.junit.jupiter.api.BeforeEach;
-
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import org.junit.jupiter.api.Test;
-
-public class ThemeTest {
-
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertNull;
+//
+//import cs3500.pa05.model.Theme;
+//import org.junit.jupiter.api.BeforeEach;
+//
+//import javafx.scene.paint.Color;
+//import javafx.scene.text.Font;
+//import org.junit.jupiter.api.Test;
+//
+//public class ThemeTest {
+//
 //  private Theme theme;
 //
 //  @BeforeEach
@@ -39,5 +39,5 @@ public class ThemeTest {
 //  public void testGetIconSet() {
 //    assertNull(theme.getIconSet());
 //  }
-}
+//}
 
