@@ -6,6 +6,7 @@ import cs3500.pa05.model.JournalWeek;
 import cs3500.pa05.view.JournalView;
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
@@ -27,7 +28,6 @@ public class Driver extends Application {
 
 
     try {
-      // load and place the view's scene onto the stage
       stage.setScene(wgvi.load());
       controller.run();
       stage.setTitle("Welcome Screen");
