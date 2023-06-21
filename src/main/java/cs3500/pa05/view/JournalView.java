@@ -5,7 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
-public class JournalView implements IView{
+public class JournalView implements IView {
 
   private FXMLLoader loader;
 
@@ -14,6 +14,7 @@ public class JournalView implements IView{
     this.loader.setLocation(getClass().getClassLoader().getResource(theme));
     this.loader.setController(controller);
   }
+
   /**
    * Loads a scene from a Whack-a-Mole GUI layout.
    *

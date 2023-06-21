@@ -1,10 +1,10 @@
 package cs3500.pa05.model;
 
-public class Task extends SchedulingItem{
+public class Task extends SchedulingItem {
   private boolean isCompleted;
 
   public Task(String itemName, String description, String day, Boolean isCompleted) {
-    super(itemName,description,day);
+    super(itemName, description, day);
     this.isCompleted = isCompleted;
   }
 
@@ -18,7 +18,7 @@ public class Task extends SchedulingItem{
 
   public String toString() {
     String completion;
-    if(isCompleted) {
+    if (isCompleted) {
       completion = " Yes";
     } else {
       completion = " No";
@@ -30,11 +30,11 @@ public class Task extends SchedulingItem{
   }
 
   public TaskJson toJson() {
-    return new TaskJson(this.name,this.description,this.day, this.isCompleted);
+    return new TaskJson(this.name, this.description, this.day, this.isCompleted);
   }
 
   public boolean equals(Object o) {
-    if(!(o instanceof Task)) {
+    if (!(o instanceof Task)) {
       return false;
     }
     Task t = (Task) o;

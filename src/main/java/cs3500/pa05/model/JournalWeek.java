@@ -28,24 +28,25 @@ public class JournalWeek implements IWeek {
     int dayTasks = days[numDayRep].getTasks();
     int completed = days[numDayRep].getCompletedTasks();
     int difference = dayTasks - completed;
-    int[] returnPackage = {dayTasks,completed,difference};
+    int[] returnPackage = {dayTasks, completed, difference};
     return returnPackage;
   }
+
   public void removeTask(Task t) {
-    for(Day d: days) {
+    for (Day d : days) {
       d.removeTask(t);
     }
   }
 
   public void removeEvent(Event e) {
-    for(Day d: days) {
+    for (Day d : days) {
       d.removeEvent(e);
     }
   }
 
   public int getTotalTasks() {
     int count = 0;
-    for(Day d: days){
+    for (Day d : days) {
       count += d.getTasks();
     }
     return count;
@@ -53,7 +54,7 @@ public class JournalWeek implements IWeek {
 
   public int getCompletedTasks() {
     int count = 0;
-    for(Day d: days){
+    for (Day d : days) {
       count += d.getCompletedTasks();
     }
     return count;
@@ -61,27 +62,29 @@ public class JournalWeek implements IWeek {
 
   public int getTotalEvents() {
     int count = 0;
-    for(Day d: days){
+    for (Day d : days) {
       count += d.getEvents();
     }
     return count;
   }
+
   public void clear() {
     this.title = null;
     this.maxEvents = Integer.MAX_VALUE;
     this.maxTasks = Integer.MAX_VALUE;
-    for(Day d: days){
+    for (Day d : days) {
       d.clear();
     }
   }
 
   public ArrayList<String> getTaskList() {
     ArrayList<String> taskList = new ArrayList<>();
-    for(Day d: days){
+    for (Day d : days) {
       taskList.addAll(d.getTaskList());
     }
     return taskList;
   }
+
   public void setTheme(String theme) {
     this.theme = theme;
   }
@@ -151,10 +154,11 @@ public class JournalWeek implements IWeek {
   public String saveToBujo() throws IOException {
 
     List<DayJson> daysJson = new ArrayList<>();
-    for(Day d: days){
+    for (Day d : days) {
       daysJson.add(d.toJson());
     }
-    WeekJson weekJson = new WeekJson(this.title,this.maxTasks,this.maxEvents,this.theme, daysJson);
+    WeekJson weekJson =
+        new WeekJson(this.title, this.maxTasks, this.maxEvents, this.theme, daysJson);
     JsonNode node = JsonUtils.serializeRecord(weekJson);
     ObjectMapper objectMapper = new ObjectMapper();
     String jsonString;

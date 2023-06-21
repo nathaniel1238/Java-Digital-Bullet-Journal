@@ -190,7 +190,6 @@ public class JournalController implements IController {
   private Label friTasks;
 
 
-
   private static String bad_input = "BAD_INPUT";
 
 
@@ -223,7 +222,6 @@ public class JournalController implements IController {
     } catch (IOException e) {
 
     }
-
   }
 
   private void loadDays(List<DayJson> days) throws IOException {
@@ -365,8 +363,8 @@ public class JournalController implements IController {
       try {
         if (!week.getTheme().contains("Sunday")) {
           System.out.println(week.getTheme());
-          changeTheme("changedSchedules/Sunday" +
-              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+          changeTheme("changedSchedules/Sunday"
+              + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -377,8 +375,8 @@ public class JournalController implements IController {
     monday.setOnAction(e -> {
       try {
         if (!week.getTheme().contains("Monday")) {
-          changeTheme("changedSchedules/Monday" +
-              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+          changeTheme("changedSchedules/Monday"
+              + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -390,8 +388,8 @@ public class JournalController implements IController {
     tuesday.setOnAction(e -> {
       try {
         if (!week.getTheme().contains("Tuesday")) {
-          changeTheme("changedSchedules/Tuesday" +
-              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+          changeTheme("changedSchedules/Tuesday"
+              + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -403,8 +401,8 @@ public class JournalController implements IController {
     wednesday.setOnAction(e -> {
       try {
         if (!week.getTheme().contains("Wednesday")) {
-          changeTheme("changedSchedules/Wednesday" +
-              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+          changeTheme("changedSchedules/Wednesday"
+              + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -416,8 +414,8 @@ public class JournalController implements IController {
     thursday.setOnAction(e -> {
       try {
         if (!week.getTheme().contains("Thursday")) {
-          changeTheme("changedSchedules/Thursday" +
-              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+          changeTheme("changedSchedules/Thursday"
+              + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -429,8 +427,8 @@ public class JournalController implements IController {
     friday.setOnAction(e -> {
       try {
         if (!week.getTheme().contains("Friday")) {
-          changeTheme("changedSchedules/Friday" +
-              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+          changeTheme("changedSchedules/Friday"
+              + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -442,8 +440,8 @@ public class JournalController implements IController {
     saturday.setOnAction(e -> {
       try {
         if (!week.getTheme().contains("Saturday")) {
-          changeTheme("changedSchedules/Saturday" +
-              week.getTheme().substring(week.getTheme().indexOf("y") + 1));
+          changeTheme("changedSchedules/Saturday"
+              + week.getTheme().substring(week.getTheme().indexOf("y") + 1));
         } else {
           changeTheme(week.getTheme());
         }
@@ -500,16 +498,16 @@ public class JournalController implements IController {
   }
 
   private void setStatistics() {
-    for(int i = 0; i <= DayType.SATURDAY.numRep; i++) {
+    for (int i = 0; i <= DayType.SATURDAY.numRep; i++) {
       int[] stats = week.getDayTaskInfo(i);
       double progressAmount;
       System.out.println(stats[0]);
-      if(stats[0] == 0) {
+      if (stats[0] == 0) {
         progressAmount = 0;
       } else {
-        progressAmount = (double) stats[1]/stats[0];
+        progressAmount = (double) stats[1] / stats[0];
       }
-      if(i == DayType.SUNDAY.numRep){
+      if (i == DayType.SUNDAY.numRep) {
         sunProg.setProgress(progressAmount);
         sunTasks.setText("Uncompleted Tasks: " + stats[2]);
       } else if (i == DayType.MONDAY.numRep) {
@@ -536,8 +534,8 @@ public class JournalController implements IController {
     int eventTotal = week.getTotalEvents();
     int completedTasks = week.getCompletedTasks();
     double percentageComplete = 0;
-    if(taskTotal != 0) {
-      percentageComplete = (double) completedTasks/taskTotal * 100;
+    if (taskTotal != 0) {
+      percentageComplete = (double) completedTasks / taskTotal * 100;
     }
     String formattedValue = String.format("%.2f", percentageComplete);
     totalTasks.setText("Total Tasks: " + taskTotal);
@@ -546,33 +544,34 @@ public class JournalController implements IController {
 
 
   }
+
   private Button inCalendar(SchedulingItem item, String name, String popupMsg, boolean isTask)
       throws IOException {
     Button button = new Button(name);
-    Popup aPopup = new Popup();
+    Popup apopup = new Popup();
     FXMLLoader loader;
     loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup.fxml"));
     loader.setController(this);
     Scene s = loader.load();
-    aPopup.getContent().add(s.getRoot());
+    apopup.getContent().add(s.getRoot());
     popupLabel.setText(popupMsg);
-    button.setOnAction(e -> makePopup(aPopup));
-    close.setOnAction(e -> aPopup.hide());
+    button.setOnAction(e -> makePopup(apopup));
+    close.setOnAction(e -> apopup.hide());
     if (isTask) {
-      delete.setOnAction(e -> deleteTask((Task) item, button, aPopup));
-      edit.setOnAction(e -> editTask((Task) item, button, aPopup));
+      delete.setOnAction(e -> deleteTask((Task) item, button, apopup));
+      edit.setOnAction(e -> editTask((Task) item, button, apopup));
       Button complete = new Button("Mark as complete");
       complete.setOnAction(e -> {
         try {
-          setComplete((Task) item, aPopup);
+          setComplete((Task) item, apopup);
         } catch (IOException ex) {
           throw new RuntimeException(ex);
         }
       });
-      aPopup.getContent().add(complete);
+      apopup.getContent().add(complete);
     } else {
-      delete.setOnAction(e -> deleteEvent((Event) item, button, aPopup));
-      edit.setOnAction(e -> editEvent((Event) item, button, aPopup));
+      delete.setOnAction(e -> deleteEvent((Event) item, button, apopup));
+      edit.setOnAction(e -> editEvent((Event) item, button, apopup));
     }
     setStatistics();
     return button;
@@ -830,6 +829,4 @@ public class JournalController implements IController {
     td.setGraphic(image);
     return td;
   }
-
-
 }

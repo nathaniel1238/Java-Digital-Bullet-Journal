@@ -4,8 +4,8 @@ public class Event extends SchedulingItem {
   private final String startTime;
   private final String duration;
 
-  public Event(String itemName, String description, String day, String start, String duration){
-    super(itemName,description,day);
+  public Event(String itemName, String description, String day, String start, String duration) {
+    super(itemName, description, day);
     this.startTime = start;
     this.duration = duration;
   }
@@ -26,11 +26,11 @@ public class Event extends SchedulingItem {
   }
 
   public EventJson toJson() {
-    return new EventJson(this.name,this.description,this.day,this.startTime,this.duration);
+    return new EventJson(this.name, this.description, this.day, this.startTime, this.duration);
   }
 
   public boolean equals(Object o) {
-    if(!(o instanceof Event)) {
+    if (!(o instanceof Event)) {
       return false;
     }
     Event e = (Event) o;
@@ -41,4 +41,5 @@ public class Event extends SchedulingItem {
         && this.startTime.equals(e.startTime)
         && this.duration.equals(e.duration);
   }
+
 }
