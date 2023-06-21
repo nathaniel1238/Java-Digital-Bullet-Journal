@@ -24,6 +24,13 @@ public class JournalWeek implements IWeek {
     this.theme = theme;
   }
 
+  public int[] getDayTaskInfo(int numDayRep) {
+    int dayTasks = days[numDayRep].getTasks();
+    int completed = days[numDayRep].getCompletedTasks();
+    int difference = dayTasks - completed;
+    int[] returnPackage = {dayTasks,completed,difference};
+    return returnPackage;
+  }
   public void removeTask(Task t) {
     for(Day d: days) {
       d.removeTask(t);

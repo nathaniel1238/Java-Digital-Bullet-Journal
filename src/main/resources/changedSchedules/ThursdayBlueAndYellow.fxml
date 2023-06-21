@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -296,6 +297,17 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="1014.0">
                                  <children>
+                                    <HBox prefHeight="38.0" prefWidth="962.0">
+                                       <children>
+                                          <ProgressBar fx:id="thursProg" prefHeight="12.0" prefWidth="145.0" progress="0.0" />
+                                          <ProgressBar fx:id="friProg" prefHeight="12.0" prefWidth="144.0" progress="0.0" />
+                                          <ProgressBar fx:id="satProg" prefHeight="12.0" prefWidth="144.0" progress="0.0" />
+                                          <ProgressBar fx:id="sunProg" prefHeight="12.0" prefWidth="144.0" progress="0.0" />
+                                          <ProgressBar fx:id="monProg" prefHeight="12.0" prefWidth="143.0" progress="0.0" />
+                                          <ProgressBar fx:id="tuesProg" prefHeight="13.0" prefWidth="143.0" progress="0.0" />
+                                          <ProgressBar fx:id="wedProg" prefHeight="12.0" prefWidth="146.0" progress="0.0" />
+                                       </children>
+                                    </HBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="1014.0">
                                        <children>
                                           <Label fx:id="thurs" alignment="CENTER" prefHeight="28.0" prefWidth="145.0" style="-fx-border-color: #FFFFFF;" text=" Thursday " textFill="WHITE">
@@ -372,6 +384,45 @@
                                                 <Insets left="3.0" />
                                              </padding>
                                           </ListView>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="19.0" prefWidth="962.0">
+                                       <children>
+                                          <Label fx:id="thursTasks" alignment="CENTER" prefHeight="16.0" prefWidth="145.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="friTasks" alignment="CENTER" prefHeight="15.0" prefWidth="140.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="satTasks" alignment="CENTER" prefHeight="15.0" prefWidth="146.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="sunTasks" alignment="CENTER" prefHeight="16.0" prefWidth="142.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="monTasks" alignment="CENTER" prefHeight="16.0" prefWidth="144.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="tuesTasks" alignment="CENTER" prefHeight="15.0" prefWidth="145.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="wedTasks" alignment="CENTER" prefHeight="14.0" prefWidth="145.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </HBox>
                                  </children>

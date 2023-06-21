@@ -27,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -156,6 +157,38 @@ public class JournalController implements IController {
 
   @FXML
   private Label tasksComplete;
+
+  @FXML
+  private ProgressBar satProg;
+  @FXML
+  private ProgressBar sunProg;
+  @FXML
+  private ProgressBar monProg;
+  @FXML
+  private ProgressBar tuesProg;
+  @FXML
+  private ProgressBar wedProg;
+  @FXML
+  private ProgressBar thursProg;
+
+  @FXML
+  private ProgressBar friProg;
+
+  @FXML
+  private Label satTasks;
+  @FXML
+  private Label sunTasks;
+  @FXML
+  private Label monTasks;
+  @FXML
+  private Label tuesTasks;
+  @FXML
+  private Label wedTasks;
+  @FXML
+  private Label thursTasks;
+  @FXML
+  private Label friTasks;
+
 
 
   private static String bad_input = "BAD_INPUT";
@@ -467,6 +500,38 @@ public class JournalController implements IController {
   }
 
   private void setStatistics() {
+    for(int i = 0; i <= DayType.SATURDAY.numRep; i++) {
+      int[] stats = week.getDayTaskInfo(i);
+      double progressAmount;
+      System.out.println(stats[0]);
+      if(stats[0] == 0) {
+        progressAmount = 0;
+      } else {
+        progressAmount = (double) stats[1]/stats[0];
+      }
+      if(i == DayType.SUNDAY.numRep){
+        sunProg.setProgress(progressAmount);
+        sunTasks.setText("Uncompleted Tasks: " + stats[2]);
+      } else if (i == DayType.MONDAY.numRep) {
+        monProg.setProgress(progressAmount);
+        monTasks.setText("Uncompleted Tasks: " + stats[2]);
+      } else if (i == DayType.TUESDAY.numRep) {
+        tuesProg.setProgress(progressAmount);
+        tuesTasks.setText("Uncompleted Tasks: " + stats[2]);
+      } else if (i == DayType.WEDNESDAY.numRep) {
+        wedProg.setProgress(progressAmount);
+        wedTasks.setText("Uncompleted Tasks: " + stats[2]);
+      } else if (i == DayType.THURSDAY.numRep) {
+        thursProg.setProgress(progressAmount);
+        thursTasks.setText("Uncompleted Tasks: " + stats[2]);
+      } else if (i == DayType.FRIDAY.numRep) {
+        friProg.setProgress(progressAmount);
+        friTasks.setText("Uncompleted Tasks: " + stats[2]);
+      } else {
+        satProg.setProgress(progressAmount);
+        satTasks.setText("Uncompleted Tasks: " + stats[2]);
+      }
+    }
     int taskTotal = week.getTotalTasks();
     int eventTotal = week.getTotalEvents();
     int completedTasks = week.getCompletedTasks();

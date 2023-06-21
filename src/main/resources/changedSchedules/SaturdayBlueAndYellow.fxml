@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,7 +22,7 @@
    <root>
       <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="1226.0">
          <children>
-            <SplitPane fx:id="splitPane" dividerPositions="0.1687091503267974" opacity="0.95" pickOnBounds="false" prefHeight="202.0" prefWidth="1226.0">
+            <SplitPane fx:id="splitPane" dividerPositions="0.01919934640522876" opacity="0.95" pickOnBounds="false" prefHeight="202.0" prefWidth="1226.0">
                <items>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -33,7 +34,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="1014.0" style="-fx-background-color: #2F3C7E; -fx-border-color: #FFFFFF;">
+                  <VBox alignment="TOP_CENTER" prefHeight="228.0" prefWidth="1087.0" style="-fx-background-color: #2F3C7E; -fx-border-color: #FFFFFF;">
                      <children>
                         <HBox prefHeight="26.0" prefWidth="1012.0" style="-fx-background-color: #FBEAEB;">
                            <children>
@@ -45,7 +46,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="358.0">
+                        <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="1101.0">
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="677.0">
                                  <children>
@@ -60,7 +61,7 @@
                                           <Font name="Times New Roman Bold Italic" size="13.0" />
                                        </font>
                                     </Label>
-                                    <HBox alignment="CENTER" prefHeight="30.0" prefWidth="302.0">
+                                    <HBox alignment="CENTER" prefHeight="8.0" prefWidth="302.0">
                                        <children>
                                           <Label fx:id="weekTitle" textFill="WHITE">
                                              <font>
@@ -71,7 +72,7 @@
                                     </HBox>
                                  </children>
                               </HBox>
-                              <MenuButton fx:id="themeButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="63.0" style="-fx-background-color: #F5F5DC;" text="Load">
+                              <MenuButton fx:id="themeButton" mnemonicParsing="false" prefHeight="3.0" prefWidth="63.0" style="-fx-background-color: #F5F5DC;" text="Load">
                                  <items>
                                     <MenuItem mnemonicParsing="false">
                                        <graphic>
@@ -196,9 +197,9 @@
                                     </MenuItem>
                                  </items>
                               </MenuButton>
-                              <Button fx:id="saveFile" mnemonicParsing="false" prefHeight="30.0" prefWidth="64.0" style="-fx-background-color: #F5F5DC;" text="Save" />
-                              <ComboBox fx:id="comboC" prefHeight="30.0" prefWidth="79.0" promptText="Open" style="-fx-background-color: #F5F5DC;" />
-                              <MenuButton fx:id="maxButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="64.0" style="-fx-background-color: #F5F5DC;" text="Set">
+                              <Button fx:id="saveFile" mnemonicParsing="false" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #F5F5DC;" text="Save" />
+                              <ComboBox fx:id="comboC" prefHeight="25.0" prefWidth="79.0" promptText="Open" style="-fx-background-color: #F5F5DC;" />
+                              <MenuButton fx:id="maxButton" mnemonicParsing="false" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #F5F5DC;" text="Set">
                                  <items>
                                     <MenuItem mnemonicParsing="false">
                                        <graphic>
@@ -252,7 +253,7 @@
                                     </MenuItem>
                                  </items>
                               </MenuButton>
-                              <MenuButton fx:id="newButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="64.0" style="-fx-background-color: #F5F5DC;" text="New">
+                              <MenuButton fx:id="newButton" mnemonicParsing="false" prefHeight="24.0" prefWidth="64.0" style="-fx-background-color: #F5F5DC;" text="New">
                                  <items>
                                     <MenuItem mnemonicParsing="false">
                                        <graphic>
@@ -296,6 +297,17 @@
                               </VBox>
                               <VBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="1014.0">
                                  <children>
+                                    <HBox prefHeight="38.0" prefWidth="962.0">
+                                       <children>
+                                          <ProgressBar fx:id="satProg" prefHeight="12.0" prefWidth="144.0" progress="0.0" />
+                                          <ProgressBar fx:id="sunProg" prefHeight="12.0" prefWidth="144.0" progress="0.0" />
+                                          <ProgressBar fx:id="monProg" prefHeight="12.0" prefWidth="143.0" progress="0.0" />
+                                          <ProgressBar fx:id="tuesProg" prefHeight="13.0" prefWidth="143.0" progress="0.0" />
+                                          <ProgressBar fx:id="wedProg" prefHeight="12.0" prefWidth="146.0" progress="0.0" />
+                                          <ProgressBar fx:id="thursProg" prefHeight="12.0" prefWidth="145.0" progress="0.0" />
+                                          <ProgressBar fx:id="friProg" prefHeight="12.0" prefWidth="144.0" progress="0.0" />
+                                       </children>
+                                    </HBox>
                                     <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="1014.0">
                                        <children>
                                           <Label fx:id="sat" alignment="CENTER" prefHeight="34.0" prefWidth="145.0" style="-fx-border-color: #FFFFFF;" text=" Saturday " textFill="WHITE">
@@ -372,6 +384,45 @@
                                                 <Insets left="3.0" />
                                              </padding>
                                           </ListView>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="19.0" prefWidth="962.0">
+                                       <children>
+                                          <Label fx:id="satTasks" alignment="CENTER" prefHeight="15.0" prefWidth="146.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="sunTasks" alignment="CENTER" prefHeight="16.0" prefWidth="142.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="monTasks" alignment="CENTER" prefHeight="16.0" prefWidth="144.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="tuesTasks" alignment="CENTER" prefHeight="15.0" prefWidth="145.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="wedTasks" alignment="CENTER" prefHeight="14.0" prefWidth="145.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="thursTasks" alignment="CENTER" prefHeight="16.0" prefWidth="145.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="friTasks" alignment="CENTER" prefHeight="15.0" prefWidth="140.0" text="Uncompleted Tasks: 0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Times New Roman Bold Italic" size="12.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </HBox>
                                  </children>
