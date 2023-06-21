@@ -25,6 +25,9 @@ jacocoTestReport {
     dependsOn test // make sure that test task run before reports are run.
 }
 
+
+
+
 group 'cs3500.pa05'
 version '1.0-SNAPSHOT'
 

@@ -10,8 +10,11 @@
 
 ## Section 3: Power Ups
 -Weekly overview
+-Progress bar
+-Takesie-backsies
 
 ## Section 4: Quality of Life
-
+- Week Start
+- Mind Changes
 
 ## Section 5: Extra Credit

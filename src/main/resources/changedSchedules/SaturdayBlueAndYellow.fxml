@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<Scene xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Scene stylesheets="@../stylePink.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <root>
       <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="1226.0">
          <children>
@@ -349,7 +349,7 @@
                                     </HBox>
                                     <HBox fx:id="listBox" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                          <ListView fx:id="satView" prefHeight="100.0" prefWidth="144.85" style="-fx-border-color: #FFFFFF; -fx-background-color: #FBEAEB;">
+                                          <ListView fx:id="satView" prefHeight="100.0" prefWidth="144.85" style="-fx-border-color: #FFFFFF; -fx-background-color: #FBEAEB;" stylesheets="@../stylePink.css">
                                              <padding>
                                                 <Insets left="3.0" />
                                              </padding>
