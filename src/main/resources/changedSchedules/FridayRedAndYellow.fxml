@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -294,9 +295,20 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <VBox alignment="TOP_CENTER" prefHeight="125.0" prefWidth="1014.0" style="-fx-border-color: #000000;">
+                              <VBox alignment="TOP_CENTER" prefHeight="73.0" prefWidth="918.0">
                                  <children>
-                                    <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="1014.0">
+                                    <HBox prefHeight="22.0" prefWidth="918.0">
+                                       <children>
+                                          <ProgressBar fx:id="friProg" prefHeight="12.0" prefWidth="129.0" progress="0.0" />
+                                          <ProgressBar fx:id="satProg" prefHeight="12.0" prefWidth="132.0" progress="0.0" />
+                                          <ProgressBar fx:id="sunProg" prefHeight="12.0" prefWidth="129.0" progress="0.0" />
+                                          <ProgressBar fx:id="monProg" prefHeight="12.0" prefWidth="132.0" progress="0.0" />
+                                          <ProgressBar fx:id="tuesProg" prefHeight="12.0" prefWidth="131.0" progress="0.0" />
+                                          <ProgressBar fx:id="wedProg" prefHeight="12.0" prefWidth="132.0" progress="0.0" />
+                                          <ProgressBar fx:id="thursProg" prefHeight="12.0" prefWidth="133.0" progress="0.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="870.0">
                                        <children>
                                           <Label fx:id="fri" alignment="CENTER" prefWidth="144.85" style="-fx-border-color: #000000;" text=" Friday ">
                                              <font>
@@ -308,7 +320,7 @@
                                                 <Font name="Tsukushi A Round Gothic Regular" size="21.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="sun" alignment="CENTER" prefWidth="144.85" style="-fx-border-color: #000000;" text=" Sunday ">
+                                          <Label fx:id="sun" alignment="CENTER" prefHeight="24.0" prefWidth="143.0" style="-fx-border-color: #000000;" text=" Sunday ">
                                              <font>
                                                 <Font name="Tsukushi A Round Gothic Regular" size="21.0" />
                                              </font>
@@ -335,7 +347,7 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <HBox fx:id="listBox" prefHeight="100.0" prefWidth="200.0">
+                                    <HBox fx:id="listBox" prefHeight="81.0" prefWidth="870.0">
                                        <children>
                                           <ListView fx:id="friView" prefHeight="100.0" prefWidth="144.85" style="-fx-border-color: #000000; -fx-background-color: #F96167;">
                                              <padding>
@@ -372,6 +384,45 @@
                                                 <Insets left="3.0" />
                                              </padding>
                                           </ListView>
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="0.0" prefWidth="918.0">
+                                       <children>
+                                          <Label fx:id="friTasks" alignment="CENTER" prefHeight="15.0" prefWidth="140.0" text="Uncompleted Tasks: 0">
+                                             <font>
+                                                <Font name="Tsukushi A Round Gothic Regular" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="satTasks" alignment="CENTER" prefHeight="15.0" prefWidth="146.0" text="Uncompleted Tasks: 0">
+                                             <font>
+                                                <Font name="Tsukushi A Round Gothic Regular" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="sunTasks" alignment="CENTER" prefHeight="16.0" prefWidth="142.0" text="Uncompleted Tasks: 0">
+                                             <font>
+                                                <Font name="Tsukushi A Round Gothic Regular" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="monTasks" alignment="CENTER" prefHeight="16.0" prefWidth="144.0" text="Uncompleted Tasks: 0">
+                                             <font>
+                                                <Font name="Tsukushi A Round Gothic Regular" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="tuesTasks" alignment="CENTER" prefHeight="15.0" prefWidth="145.0" text="Uncompleted Tasks: 0">
+                                             <font>
+                                                <Font name="Tsukushi A Round Gothic Regular" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="wedTasks" alignment="CENTER" prefHeight="14.0" prefWidth="145.0" text="Uncompleted Tasks: 0">
+                                             <font>
+                                                <Font name="Tsukushi A Round Gothic Regular" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="thursTasks" alignment="CENTER" prefHeight="16.0" prefWidth="145.0" text="Uncompleted Tasks: 0">
+                                             <font>
+                                                <Font name="Tsukushi A Round Gothic Regular" size="11.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </HBox>
                                  </children>
