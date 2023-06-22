@@ -43,8 +43,8 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 /**
- *  A controller class that manages the operations of the Journal. It implements the IController
- *  interface which provides a contract for all controllers.
+ * A controller class that manages the operations of the Journal. It implements the IController
+ * interface which provides a contract for all controllers.
  */
 public class JournalController implements Icontroller {
   @FXML
@@ -223,6 +223,11 @@ public class JournalController implements Icontroller {
     buttons();
   }
 
+  /**
+   * Sets button actions for FXML files
+   *
+   * @throws IOException if a method call throws an IOException
+   */
   private void buttons() throws IOException {
     splitPane.setDividerPositions(0);
     anchorPane.getChildren().remove(closeQueue);
@@ -262,9 +267,14 @@ public class JournalController implements Icontroller {
     }
   }
 
-
-  private void loadFile(String s) throws IOException {
-    fileReader = new FileReader(s);
+  /**
+   * Loads the given file's data into the calendar
+   *
+   * @param filePath the path of the file
+   * @throws IOException the file was not able to be read
+   */
+  private void loadFile(String filePath) throws IOException {
+    fileReader = new FileReader(filePath);
     JsonParser parser = this.mapper.getFactory().createParser(this.fileReader);
     WeekJson message = parser.readValueAs(WeekJson.class);
     clear(message.theme());
@@ -272,6 +282,12 @@ public class JournalController implements Icontroller {
     loadDays(message.days());
   }
 
+  /**
+   * Loads the individual data of each day into the calendar
+   *
+   * @param days the list of DayJson representing the 7 days
+   * @throws IOException the events or tasks were not loaded properly
+   */
   private void loadDays(List<DayJson> days) throws IOException {
     dayViews.put(DayType.MONDAY.rep, monView);
     dayViews.put(DayType.TUESDAY.rep, tuesView);
@@ -286,6 +302,13 @@ public class JournalController implements Icontroller {
     }
   }
 
+  /**
+   * Loads the given list of tasks into the given ListView
+   *
+   * @param view  the ListView being added to
+   * @param tasks the list of tasks to add
+   * @throws IOException there was an error adding the tasks
+   */
   private void loadTasks(ListView<Button> view, List<TaskJson> tasks) throws IOException {
     for (TaskJson t : tasks) {
       Task task = new Task(t.name(), t.description(), t.day(), t.bool());
@@ -294,6 +317,13 @@ public class JournalController implements Icontroller {
     }
   }
 
+  /**
+   * Loads the given list of events into the given ListView
+   *
+   * @param view   the ListView being added to
+   * @param events the list of events to add
+   * @throws IOException there was an error adding the events
+   */
   private void loadEvents(ListView<Button> view, List<EventJson> events) throws IOException {
     for (EventJson e : events) {
       Event event = new Event(e.name(), e.description(), e.day(), e.start(), e.duration());
@@ -302,6 +332,11 @@ public class JournalController implements Icontroller {
     }
   }
 
+  /**
+   * Sets the calendar buttons, title, and theme
+   *
+   * @param message the json from the bujo file in WeekJson format
+   */
   private void loadButtonsAndHeadings(WeekJson message) {
     weekTitle.setText(message.title());
     week.setTheme(message.theme());
@@ -320,6 +355,11 @@ public class JournalController implements Icontroller {
     }
   }
 
+  /**
+   * Shows the Task-Queue
+   *
+   * @throws IOException there was an error trying to show the Task Queue
+   */
   private void showQueue() throws IOException {
     String s = saveToBujo();
     loadFile(s);
@@ -330,12 +370,21 @@ public class JournalController implements Icontroller {
     closeQueue.setOnAction(e -> closeQueue());
   }
 
+  /**
+   * Closes the Task-Queue
+   */
   private void closeQueue() {
     splitPane.setDividerPositions(0);
     anchorPane.getChildren().remove(closeQueue);
   }
 
 
+  /**
+   * Changes the theme of the calendar
+   *
+   * @param theme the desired new theme
+   * @throws IOException there was an error trying to set the new theme
+   */
   private void changeTheme(String theme) throws IOException {
     week.setTheme(theme);
     String file = saveToBujo();
@@ -343,6 +392,11 @@ public class JournalController implements Icontroller {
     loadFile(file);
   }
 
+  /**
+   * Parses the filesystem to find all .bujo files, adds them to the dropdown box
+   *
+   * @throws IOException there was an error collecting the .bujo files
+   */
   private void loadSavedFiles() throws IOException {
     BujoFileWalker visitor = new BujoFileWalker();
     Files.walkFileTree(Paths.get(""), visitor);
@@ -363,6 +417,12 @@ public class JournalController implements Icontroller {
     comboC.getItems().addAll(fileButtons);
   }
 
+  /**
+   * Clears the calendar, sets with a new theme
+   *
+   * @param theme the new theme
+   * @throws IOException there was error associated with clearing the calendar
+   */
   private void clear(String theme) throws IOException {
     Pane root = (Pane) stage.getScene().getRoot();
     root.getChildren().clear();
@@ -372,16 +432,28 @@ public class JournalController implements Icontroller {
     buttons();
   }
 
+  /**
+   * Saves the week as a bujo file
+   *
+   * @return the filename of the .bujo file
+   * @throws IOException there was an error trying to save the file
+   */
   private String saveToBujo() throws IOException {
     return week.saveToBujo();
   }
 
+  /**
+   * Sets the title of the calendar
+   */
   private void setTitle() {
     String t = getInfo("Enter a title for this week's calendar:");
     weekTitle.setText(t);
     week.setTitle(t);
   }
 
+  /**
+   * Calculates the weekly statistics and sets them to corresponding annotations
+   */
   private void setStatistics() {
     Map<Integer, Control[]> statsView = new HashMap<>();
     statsView.put(0, new Control[] {sunProg, sunTasks});
@@ -417,6 +489,12 @@ public class JournalController implements Icontroller {
     tasksComplete.setText("Tasks Completed: " + String.format("%.2f", percentageComplete) + "%");
   }
 
+  /**
+   * Displays a popup error message
+   *
+   * @param str the desired text on the popup
+   * @throws IOException if the popup failed to be created
+   */
   private void showErrorMsg(String str) throws IOException {
     Popup apopup = new Popup();
     FXMLLoader loader;
@@ -431,6 +509,16 @@ public class JournalController implements Icontroller {
     delete.setVisible(false);
   }
 
+  /**
+   * Adds a given SchedulingItem to calendar
+   *
+   * @param item     The SchedulingItem
+   * @param name     the name of the item
+   * @param popupMsg the message to be displayed on the popup
+   * @param isTask   whether this item is a task
+   * @return the button representing this new SchedulingItem
+   * @throws IOException if the SchedulingItem was failed to be put into the calendar
+   */
   private Button inCalendar(SchedulingItem item, String name, String popupMsg, boolean isTask)
       throws IOException {
     Popup apopup = new Popup();
@@ -459,6 +547,12 @@ public class JournalController implements Icontroller {
   }
 
 
+  /**
+   * Gets the parent ListView of a SchedulingItem
+   *
+   * @param old the button to be removed
+   * @param pop the popup to be hidden
+   */
   private void getView(Button old, Popup pop) {
     pop.hide();
     Parent parent = old.getParent();
@@ -472,28 +566,64 @@ public class JournalController implements Icontroller {
     view.getItems().remove(old);
   }
 
+  /**
+   * Deletes the given task
+   *
+   * @param item the task to be deleted
+   * @param old  the button to be deleted
+   * @param pop  the popup to be hidden
+   */
   private void deleteTask(Task item, Button old, Popup pop) {
     getView(old, pop);
     week.removeTask(item);
     setStatistics();
   }
 
-
+  /**
+   * Deletes the given event
+   *
+   * @param item the event to be deleted
+   * @param old  the button to be deleted
+   * @param pop  the popup to be hidden
+   */
   private void deleteEvent(Event item, Button old, Popup pop) {
     getView(old, pop);
     week.removeEvent(item);
   }
 
+  /**
+   * Edits the given task
+   *
+   * @param item the task to be edited
+   * @param old  the button to be changed
+   * @param pop  the popup to be hidden
+   * @throws IOException if the editing failed to properly occur
+   */
   private void editTask(Task item, Button old, Popup pop) throws IOException {
     deleteTask(item, old, pop);
     createTask();
   }
 
+  /**
+   * Edits the given event
+   *
+   * @param item the event to be edited
+   * @param old  the button to be changed
+   * @param pop  the popup to be hidden
+   * @throws IOException if the editing failed to properly occur
+   */
   private void editEvent(Event item, Button old, Popup pop) throws IOException {
     deleteEvent(item, old, pop);
     createEvent();
   }
 
+  /**
+   * Sets the give task as complete
+   *
+   * @param task the task to mark completed
+   * @param p    the popup to be hidden
+   * @throws IOException if there was an error in marking the task complete
+   */
   private void setComplete(Task task, Popup p) throws IOException {
     p.hide();
     task.setCompleted();
@@ -501,11 +631,21 @@ public class JournalController implements Icontroller {
     loadFile(file);
   }
 
+  /**
+   * Shows the given popup
+   *
+   * @param p the popup
+   */
   @FXML
   private void makePopup(Popup p) {
     p.show(this.stage);
   }
 
+  /**
+   * Creates a task
+   *
+   * @throws IOException if the task failed to be created
+   */
   private void createTask() throws IOException {
     String name = getInfo("Enter the name");
     String description = getInfo("Enter the description");
@@ -522,6 +662,11 @@ public class JournalController implements Icontroller {
     }
   }
 
+  /**
+   * Creates an event
+   *
+   * @throws IOException if the event failed to be created
+   */
   private void createEvent() throws IOException {
     String name = getInfo("Enter the name");
     String description = getInfo("Enter the description");
@@ -546,6 +691,12 @@ public class JournalController implements Icontroller {
     }
   }
 
+  /**
+   * Finds the associated ListView with a given day
+   *
+   * @param input the day in string format
+   * @return the associated ListView
+   */
   private ListView<Button> properDay(String input) {
     if (input.equalsIgnoreCase(DayType.MONDAY.rep)) {
       return monView;
@@ -564,6 +715,12 @@ public class JournalController implements Icontroller {
     }
   }
 
+  /**
+   * Gets info from a user using a TextDialog
+   *
+   * @param msg the prompt message to the user
+   * @return what the user entered
+   */
   private String getInfo(String msg) {
     TextInputDialog td = setupTextDialog("...");
     td.setHeaderText(msg);
@@ -571,6 +728,12 @@ public class JournalController implements Icontroller {
     return td.getResult();
   }
 
+  /**
+   * Validates that a proper time has been inputted
+   *
+   * @param input the time from the user
+   * @return returns a bad input if invalid, otherwise returns the proper time
+   */
   private String validateTime(String input) {
     int hour;
     int minute;
@@ -586,6 +749,12 @@ public class JournalController implements Icontroller {
     return bad_input;
   }
 
+  /**
+   * Validates the user entered a valid duration for an event
+   *
+   * @param input the duration input from the user
+   * @return returns a bad input if invalid, otherwise returns the proper time
+   */
   private String validateDuration(String input) {
     try {
       Integer.parseInt(input);
@@ -598,6 +767,12 @@ public class JournalController implements Icontroller {
     return input;
   }
 
+  /**
+   * Validates the user entered a valid day
+   *
+   * @param input the day input from the user
+   * @return returns a bad input if invalid, otherwise returns the proper time
+   */
   private String validateDay(String input) {
     if (input.equalsIgnoreCase(DayType.MONDAY.rep)) {
       return DayType.MONDAY.rep;
@@ -617,6 +792,9 @@ public class JournalController implements Icontroller {
     return bad_input;
   }
 
+  /**
+   * Sets max event limit
+   */
   private void setEvents() {
     TextInputDialog td = setupTextDialog("ENTER AN INTEGER");
     td.setHeaderText("Enter Maximum Daily Events");
@@ -634,6 +812,9 @@ public class JournalController implements Icontroller {
     });
   }
 
+  /**
+   * Sets max task limit
+   */
   private void setTasks() {
     TextInputDialog td = setupTextDialog("ENTER AN INTEGER");
     td.setHeaderText("Enter Maximum Daily Tasks");
@@ -651,6 +832,16 @@ public class JournalController implements Icontroller {
     });
   }
 
+  /**
+   * Validates that a valid max limit was given
+   *
+   * @param string    The user input
+   * @param label     the label associated with the max
+   * @param itemCount the max number of SchedulingItems
+   * @param end       "Task: " or "Event: "
+   * @return the max number
+   * @throws IOException a valid integer was not given
+   */
   private int validateMaxSettings(String string, Label label, int itemCount, String end)
       throws IOException {
     int count = itemCount;
@@ -663,6 +854,12 @@ public class JournalController implements Icontroller {
     return count;
   }
 
+  /**
+   * Sets up the text dialog
+   *
+   * @param msg the message to be displayed on the textDialog
+   * @return the TextDialog
+   */
   private TextInputDialog setupTextDialog(String msg) {
     Image img = new Image("calendar.png");
     ImageView image = new ImageView(img);

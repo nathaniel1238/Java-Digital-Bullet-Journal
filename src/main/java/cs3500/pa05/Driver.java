@@ -6,15 +6,14 @@ import cs3500.pa05.model.JournalWeek;
 import cs3500.pa05.view.JournalView;
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Represents a Whack-A-Mole game application.
+ * Represents a JavaJournal application.
  */
 public class Driver extends Application {
   /**
-   * Starts the GUI for a game of Whack-A-Mole.
+   * Starts the GUI for a JavaJournal.
    *
    * @param stage the JavaFX stage to add elements to
    */
@@ -22,13 +21,13 @@ public class Driver extends Application {
   @Override
   public void start(Stage stage) throws IOException {
 
-    JournalWeek week = new JournalWeek("changedSchedules/SaturdayBlueAndYellow.fxml");
+    JournalWeek week = new JournalWeek("changedSchedules/MondayRoyalWeek.fxml");
     JournalController controller = new JournalController(stage, week);
-    JournalView wgvi = new JournalView(controller, "changedSchedules/SaturdayBlueAndYellow.fxml");
+    JournalView journalView = new JournalView(controller, "changedSchedules/MondayRoyalWeek.fxml");
 
 
     try {
-      stage.setScene(wgvi.load());
+      stage.setScene(journalView.load());
       controller.run();
       stage.setTitle("Welcome Screen");
       // render the stage
@@ -42,7 +41,7 @@ public class Driver extends Application {
   }
 
   /**
-   * Entry point for a game of Whack-a-Mole.
+   * Entry point for a JavaJournal.
    *
    * @param args the command line arguments
    */

@@ -26,7 +26,7 @@ public class JournalView implements Iview {
   }
 
   /**
-   * Loads a scene from a Whack-a-Mole GUI layout.
+   * Loads a scene from a JavaJournal GUI layout.
    *
    * @return the layout
    */
