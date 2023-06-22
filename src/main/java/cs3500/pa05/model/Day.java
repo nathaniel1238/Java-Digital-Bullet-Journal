@@ -12,14 +12,14 @@ public class Day {
     this.day = day;
   }
 
-  public  void clear() {
+  public void clear() {
     this.events = new ArrayList<>();
     this.tasks = new ArrayList<>();
   }
 
   public void removeTask(Task t) {
-    for(Task task: tasks) {
-      if(task.equals(t)){
+    for (Task task : tasks) {
+      if (task.equals(t)) {
         tasks.remove(task);
         return;
       }
@@ -27,8 +27,8 @@ public class Day {
   }
 
   public void removeEvent(Event e) {
-    for(Event event: events) {
-      if(event.equals(e)){
+    for (Event event : events) {
+      if (event.equals(e)) {
         events.remove(event);
         return;
       }
@@ -37,8 +37,8 @@ public class Day {
 
   public int getCompletedTasks() {
     int count = 0;
-    for(Task t: tasks){
-      if(t.getCompleted()) {
+    for (Task t : tasks) {
+      if (t.getCompleted()) {
         count++;
       }
     }
@@ -47,13 +47,13 @@ public class Day {
 
   public ArrayList<String> getTaskList() {
     ArrayList<String> taskList = new ArrayList<>();
-    for(Task t: tasks){
+    for (Task t : tasks) {
       taskList.add(t.toString());
     }
     return taskList;
   }
 
-  public void addEvent(Event e){
+  public void addEvent(Event e) {
     events.add(e);
   }
 
@@ -61,7 +61,7 @@ public class Day {
     tasks.add(t);
   }
 
-  public int getEvents(){
+  public int getEvents() {
     return events.size();
   }
 
@@ -77,12 +77,12 @@ public class Day {
   public DayJson toJson() {
     List<EventJson> eventJsons = new ArrayList<>();
     List<TaskJson> taskJsons = new ArrayList<>();
-    for(Event e: events) {
+    for (Event e : events) {
       eventJsons.add(e.toJson());
     }
-    for(Task t: tasks){
+    for (Task t : tasks) {
       taskJsons.add(t.toJson());
     }
-    return new DayJson(this.day,eventJsons,taskJsons);
+    return new DayJson(this.day, eventJsons, taskJsons);
   }
 }
