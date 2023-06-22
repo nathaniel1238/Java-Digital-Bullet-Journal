@@ -1,10 +1,15 @@
 package cs3500.pa05;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import cs3500.pa05.model.EventJson;
-import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import cs3500.pa05.model.EventJson;
+import org.junit.jupiter.api.Test;
+
+
+/**
+ * Test class for the EventJson record
+ */
 public class EventJsonTest {
 
   @Test

@@ -1,12 +1,18 @@
 package cs3500.pa05;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import cs3500.pa05.model.DayType;
 import cs3500.pa05.model.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Test class for Task class
+ */
 public class TaskTest {
 
   private Task task;
@@ -44,9 +50,8 @@ public class TaskTest {
 
   @Test
   public void testEqualsNotInstanceOf() {
-    // Comparing to a string (or any other non-Task object) should return false
-    String notATask = "Not a Task";
-    assertFalse(task.equals(notATask));
+    String notAtask = "Not a Task";
+    assertFalse(task.equals(notAtask));
   }
 
   @Test
@@ -56,7 +61,8 @@ public class TaskTest {
     assertTrue(task.equals(sameTask));
 
     // Change one parameter and the tasks should not be equal
-    Task differentTask = new Task("Test Task", "Different Task Description", DayType.MONDAY.rep, false);
+    Task differentTask =
+        new Task("Test Task", "Different Task Description", DayType.MONDAY.rep, false);
     assertFalse(task.equals(differentTask));
   }
 

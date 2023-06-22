@@ -1,15 +1,26 @@
 package cs3500.pa05;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import cs3500.pa05.model.Write;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
-import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Class containing tests for the Write class
+ */
 public class WriteTest {
 
+
+  /**
+   * Writes a JSON string to a specified file and then verifies the file was created
+   */
   @Test
   public void testWriteToFile() {
     String node = "{\"name\": \"John\", \"age\": 30}";

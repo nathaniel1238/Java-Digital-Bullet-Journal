@@ -1,5 +1,11 @@
 package cs3500.pa05;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import cs3500.pa05.model.DayType;
 import cs3500.pa05.model.Event;
 import cs3500.pa05.model.JournalWeek;
@@ -9,8 +15,9 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Test class for JournalWeek class
+ */
 public class JournalWeekTest {
 
   private JournalWeek journalWeek2;
@@ -21,6 +28,9 @@ public class JournalWeekTest {
   private Task task2;
   private Event event;
 
+  /**
+   * Creates varies task, event, and journal week instances to be used during testing
+   */
   @BeforeEach
   public void setUp() {
     task = new Task("Test Task", "Task Description", DayType.MONDAY.rep, false);

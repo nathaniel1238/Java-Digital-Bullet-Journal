@@ -5,10 +5,20 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
+
+/**
+ * Handles the retrieval of resources and visual elements to be displayed to the user
+ */
 public class JournalView implements IView {
 
   private FXMLLoader loader;
 
+  /**
+   * Constructor for a Journal View, initializes the loader and sets the controller and theme
+   *
+   * @param controller an instance of the controller
+   * @param theme the set theme the view will show
+   */
   public JournalView(JournalController controller, String theme) {
     this.loader = new FXMLLoader();
     this.loader.setLocation(getClass().getClassLoader().getResource(theme));

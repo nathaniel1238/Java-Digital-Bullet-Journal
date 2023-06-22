@@ -10,12 +10,19 @@ import cs3500.pa05.model.Event;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Class containing tests for the Event class
+ */
 public class EventTest {
 
   private Event event;
   private Event sameEvent;
   private Event differentEvent;
 
+
+  /**
+   * Creates different event instances to be used for testing
+   */
   @BeforeEach
   public void setUp() {
     event = new Event("Test Event", "Test Event Description", DayType.MONDAY.rep, "10:00", "60");
