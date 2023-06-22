@@ -164,7 +164,7 @@ public class JournalWeek implements IWeek {
       e.printStackTrace();
       return null;
     }
-    String file = this.title + ".bujo";
+    String file = "src/bujoFiles/" + this.title + ".bujo";
     System.out.println(node);
     Write.writeToFile(jsonString, file);
     return file;
