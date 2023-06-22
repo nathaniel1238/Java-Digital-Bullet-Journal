@@ -26,7 +26,7 @@ public class TaskTest {
 
   @Test
   public void testToStringNo() {
-    String expectedString = "Day: MONDAY\n"
+    String expectedString = "Day: Monday\n"
         + "Task Name: Test Task\n"
         + "Description: Task Description\n"
         + "Completed?:  No";
@@ -35,7 +35,7 @@ public class TaskTest {
 
   @Test
   public void testToStringYes() {
-    String expectedString = "Day: MONDAY\n"
+    String expectedString = "Day: Monday\n"
         + "Task Name: Test Task 2\n"
         + "Description: Task Description\n"
         + "Completed?:  Yes";
