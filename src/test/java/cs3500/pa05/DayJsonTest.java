@@ -21,6 +21,9 @@ public class DayJsonTest {
   private EventJson eventJson;
   private TaskJson taskJson;
 
+  /**
+   * Creates an instance of and event, task, and day to be used for testing
+   */
   @BeforeEach
   public void setUp() {
     eventJson = new EventJson("Event1", "Description1", "Day1", "10:00", "2 hours");

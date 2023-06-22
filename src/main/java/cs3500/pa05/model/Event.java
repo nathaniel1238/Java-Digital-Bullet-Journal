@@ -67,7 +67,7 @@ public class Event extends SchedulingItem {
    *
    * @param o The object to be compared with the current event.
    * @return True if the provided object is an event and has the same attributes as the current
-   * event.
+   *         event.
    */
   public boolean equals(Object o) {
     if (!(o instanceof Event)) {

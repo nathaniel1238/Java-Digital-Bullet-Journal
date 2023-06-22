@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * Represents a controller for a game of Whack-a-Mole.
  */
-public interface IController {
+public interface Icontroller {
   /**
    * Initializes a game of Whack-A-Mole.
    *

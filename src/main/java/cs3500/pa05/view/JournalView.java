@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 /**
  * Handles the retrieval of resources and visual elements to be displayed to the user
  */
-public class JournalView implements IView {
+public class JournalView implements Iview {
 
   private FXMLLoader loader;
 
