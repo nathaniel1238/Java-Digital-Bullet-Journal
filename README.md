@@ -55,7 +55,7 @@ In our inCalendar method in our controller, the method basically adds an item to
 the kind of item it is so long as it is a SchedulingItem, we depend on the high level module SchedulingItem
 as opposed to a Task or an Event to help promote the decoupling of our code
 
-Possible Program Extensions: Quotes & Notes
+# Possible Program Extensions: Quotes & Notes
 If we were to decide to implement an additional feature such as Quotes & Notes we would extend
 our program by first creating a label and button in the fxml file through SceneBuilder. From there,
 we'd give the fx:ids and annotate them in the controller. In our buttons() method we'd add a setOnAction
