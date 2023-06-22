@@ -43,6 +43,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
+/**
+ *  A controller class that manages the operations of the Journal. It implements the IController
+ *  interface which provides a contract for all controllers.
+ */
 public class JournalController implements IController {
   @FXML
   private ComboBox<Button> comboC;
@@ -198,11 +202,23 @@ public class JournalController implements IController {
 
   private Map<String, ListView<Button>> dayViews = new HashMap<>();
 
+  /**
+   * Constructs a JournalController object.
+   *
+   * @param stage The stage where the JournalController will be displayed.
+   * @param week  The JournalWeek that will be managed by the controller.
+   */
   public JournalController(Stage stage, JournalWeek week) {
     this.stage = stage;
     this.week = week;
   }
 
+  /**
+   * Starts the execution of the journal controller and initializes the buttons and loads saved
+   * files.
+   *
+   * @throws IOException if an I/O error occurs.
+   */
   @FXML
   public void run() throws IOException {
     buttons();
@@ -223,20 +239,20 @@ public class JournalController implements IController {
     royal.setOnAction(e -> handleException(() -> changeTheme(s + "RoyalWeek.fxml")));
     redYellow.setOnAction(e -> handleException(() -> changeTheme(s + "RedAndYellow.fxml")));
     pinkBlue.setOnAction(e -> handleException(() -> changeTheme(s + "BlueAndYellow.fxml")));
-    sunday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Sunday" +
-        week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
-    monday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Monday" +
-        week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
-    tuesday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Tuesday" +
-        week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
-    wednesday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Wednesday" +
-        week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
-    thursday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Thursday" +
-        week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
-    friday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Friday" +
-        week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
-    saturday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Saturday" +
-        week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
+    sunday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Sunday"
+        + week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
+    monday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Monday"
+        + week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
+    tuesday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Tuesday"
+        + week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
+    wednesday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Wednesday"
+        + week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
+    thursday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Thursday"
+        + week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
+    friday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Friday"
+        + week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
+    saturday.setOnAction(e -> handleException(() -> changeTheme("changedSchedules/Saturday"
+        + week.getTheme().substring(week.getTheme().indexOf("y") + 1))));
   }
 
   private <E extends Exception> void handleException(CheckedRunnable<E> runnable) {

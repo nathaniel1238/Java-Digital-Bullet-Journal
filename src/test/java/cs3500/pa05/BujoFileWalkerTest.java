@@ -1,20 +1,35 @@
 package cs3500.pa05;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import cs3500.pa05.model.BujoFileWalker;
+import java.io.IOException;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.io.IOException;
-import java.util.ArrayList;
-import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for BujoFileWalker class
+ */
 public class BujoFileWalkerTest {
   private BujoFileWalker walker;
   private Path testDir;
   private Path testFile;
   private BasicFileAttributes attrs;
 
+  /**
+   * Initializes test directory, file, and walker to be used for testing
+   *
+   * @throws IOException if there is a failure to read files
+   */
   @BeforeEach
   public void setUp() throws IOException {
     walker = new BujoFileWalker();
@@ -40,7 +55,8 @@ public class BujoFileWalkerTest {
 
   @Test
   public void testVisitFileFailed() {
-    IOException ex = assertThrows(IOException.class, () -> walker.visitFileFailed(testFile, new IOException()));
+    IOException ex = assertThrows(IOException.class, () -> walker.visitFileFailed(testFile,
+        new IOException()));
     assertEquals("Bad File!", ex.getMessage());
   }
 

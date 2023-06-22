@@ -2,42 +2,56 @@ package cs3500.pa05;
 
 
 //import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertNull;
+//import static org.junit.jupiter.api.Assertions.assertNotNull;
 //
 //import cs3500.pa05.model.Theme;
-//import org.junit.jupiter.api.BeforeEach;
-//
+//import javafx.scene.image.Image;
 //import javafx.scene.paint.Color;
 //import javafx.scene.text.Font;
+//
+//import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //
 //public class ThemeTest {
 //
-//  private Theme theme;
+//    private Theme theme;
+//    private Color testBackgroundColor;
+//    private Color testFontColor;
+//    private Font testFont;
+//    private Image testIconSet;
 //
-//  @BeforeEach
-//  public void setUp() {
-//    theme = new Theme(Color.WHITE, Color.BLACK, new Font("Arial", 12), null);
-//  }
+//    @BeforeEach
+//    public void setUp() {
+//        testBackgroundColor = Color.BLUE;
+//        testFontColor = Color.RED;
+//        testFont = Font.font("Arial", 20);
 //
-//  @Test
-//  public void testGetBackgroundColor() {
-//    assertEquals(Color.WHITE, theme.getBackgroundColor());
-//  }
+//        theme = new Theme(testBackgroundColor, testFontColor, testFont, testIconSet);
+//    }
 //
-//  @Test
-//  public void testGetFontColor() {
-//    assertEquals(Color.BLACK, theme.getFontColor());
-//  }
+//    @Test
+//    public void testThemeNotNull() {
+//        assertNotNull(theme);
+//    }
 //
-//  @Test
-//  public void testGetFont() {
-//    assertEquals(new Font("Arial", 12), theme.getFont());
-//  }
+//    @Test
+//    public void testGetBackgroundColor() {
+//        assertEquals(testBackgroundColor, theme.getBackgroundColor());
+//    }
 //
-//  @Test
-//  public void testGetIconSet() {
-//    assertNull(theme.getIconSet());
-//  }
+//    @Test
+//    public void testGetFontColor() {
+//        assertEquals(testFontColor, theme.getFontColor());
+//    }
+//
+//    @Test
+//    public void testGetFont() {
+//        assertEquals(testFont, theme.getFont());
+//    }
+//
+//    @Test
+//    public void testGetIconSet() {
+//        assertEquals(testIconSet, theme.getIconSet());
+//    }
 //}
 

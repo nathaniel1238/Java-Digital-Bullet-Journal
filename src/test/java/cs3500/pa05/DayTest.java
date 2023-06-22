@@ -1,5 +1,7 @@
 package cs3500.pa05;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.DayJson;
 import cs3500.pa05.model.DayType;
@@ -8,8 +10,9 @@ import cs3500.pa05.model.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Test class for Day class
+ */
 public class DayTest {
 
   private Day day;
