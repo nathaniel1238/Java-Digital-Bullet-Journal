@@ -14,7 +14,6 @@ import cs3500.pa05.model.Task;
 import cs3500.pa05.model.TaskJson;
 import cs3500.pa05.model.WeekJson;
 import cs3500.pa05.view.JournalView;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,7 +46,7 @@ import javafx.stage.Stage;
  *  A controller class that manages the operations of the Journal. It implements the IController
  *  interface which provides a contract for all controllers.
  */
-public class JournalController implements IController {
+public class JournalController implements Icontroller {
   @FXML
   private ComboBox<Button> comboC;
   @FXML
@@ -225,7 +224,6 @@ public class JournalController implements IController {
   }
 
   private void buttons() throws IOException {
-    String s = week.getTheme().substring(0, week.getTheme().indexOf("y") + 1);
     splitPane.setDividerPositions(0);
     anchorPane.getChildren().remove(closeQueue);
     loadSavedFiles();
@@ -236,6 +234,7 @@ public class JournalController implements IController {
     maxE.setOnAction(e -> setEvents());
     title.setOnAction(e -> setTitle());
     saveFile.setOnAction(e -> handleException(this::saveToBujo));
+    String s = week.getTheme().substring(0, week.getTheme().indexOf("y") + 1);
     royal.setOnAction(e -> handleException(() -> changeTheme(s + "RoyalWeek.fxml")));
     redYellow.setOnAction(e -> handleException(() -> changeTheme(s + "RedAndYellow.fxml")));
     pinkBlue.setOnAction(e -> handleException(() -> changeTheme(s + "BlueAndYellow.fxml")));
@@ -419,40 +418,41 @@ public class JournalController implements IController {
   }
 
   private void showErrorMsg(String str) throws IOException {
-    Popup aPopup = new Popup();
+    Popup apopup = new Popup();
     FXMLLoader loader;
     loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup.fxml"));
     loader.setController(this);
     Scene s = loader.load();
-    aPopup.getContent().add(s.getRoot());
+    apopup.getContent().add(s.getRoot());
     popupLabel.setText(str);
-    aPopup.show(this.stage);
-    close.setOnAction(e -> aPopup.hide());
+    apopup.show(this.stage);
+    close.setOnAction(e -> apopup.hide());
     edit.setVisible(false);
     delete.setVisible(false);
   }
 
   private Button inCalendar(SchedulingItem item, String name, String popupMsg, boolean isTask)
       throws IOException {
-    Button button = new Button(name);
-    Popup aPopup = new Popup();
+    Popup apopup = new Popup();
     FXMLLoader loader;
     loader = new FXMLLoader(getClass().getClassLoader().getResource("myPopup.fxml"));
     loader.setController(this);
     Scene s = loader.load();
-    aPopup.getContent().add(s.getRoot());
+    apopup.getContent().add(s.getRoot());
     popupLabel.setText(popupMsg);
-    button.setOnAction(e -> makePopup(aPopup));
-    close.setOnAction(e -> aPopup.hide());
+
+    Button button = new Button(name);
+    button.setOnAction(e -> makePopup(apopup));
+    close.setOnAction(e -> apopup.hide());
     if (isTask) {
-      delete.setOnAction(e -> deleteTask((Task) item, button, aPopup));
-      edit.setOnAction(e -> handleException(() -> editTask((Task) item, button, aPopup)));
+      delete.setOnAction(e -> deleteTask((Task) item, button, apopup));
+      edit.setOnAction(e -> handleException(() -> editTask((Task) item, button, apopup)));
       Button complete = new Button("Mark as complete");
-      complete.setOnAction(e -> handleException(() -> setComplete((Task) item, aPopup)));
-      aPopup.getContent().add(complete);
+      complete.setOnAction(e -> handleException(() -> setComplete((Task) item, apopup)));
+      apopup.getContent().add(complete);
     } else {
-      delete.setOnAction(e -> deleteEvent((Event) item, button, aPopup));
-      edit.setOnAction(e -> handleException(() -> editEvent((Event) item, button, aPopup)));
+      delete.setOnAction(e -> deleteEvent((Event) item, button, apopup));
+      edit.setOnAction(e -> handleException(() -> editEvent((Event) item, button, apopup)));
     }
     setStatistics();
     return button;

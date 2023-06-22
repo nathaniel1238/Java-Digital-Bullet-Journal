@@ -66,23 +66,27 @@ public class EventTest {
 
   @Test
   public void testEqualsDifferentAttributes() {
-    Event differentNameEvent =
-        new Event("Different Event", "Test Event Description", DayType.MONDAY.rep, "10:00", "60");
-    Event differentDescriptionEvent =
-        new Event("Test Event", "Different Description", DayType.MONDAY.rep, "10:00", "60");
-    Event differentDayEvent =
-        new Event("Test Event", "Test Event Description", DayType.TUESDAY.rep, "10:00", "60");
-    Event differentStartTimeEvent =
-        new Event("Test Event", "Test Event Description", DayType.MONDAY.rep, "11:00", "60");
-    Event differentDurationEvent =
-        new Event("Test Event", "Test Event Description", DayType.MONDAY.rep, "10:00", "120");
-
+    Event differentNameEvent = new Event("Different Event",
+        "Test Event Description", DayType.MONDAY.rep, "10:00", "60");
     assertFalse(event.equals(differentNameEvent));
+
+    Event differentDescriptionEvent = new Event("Test Event",
+        "Different Description", DayType.MONDAY.rep, "10:00", "60");
     assertFalse(event.equals(differentDescriptionEvent));
+
+    Event differentDayEvent = new Event("Test Event",
+        "Test Event Description", DayType.TUESDAY.rep, "10:00", "60");
     assertFalse(event.equals(differentDayEvent));
+
+    Event differentStartTimeEvent = new Event("Test Event",
+        "Test Event Description", DayType.MONDAY.rep, "11:00", "60");
     assertFalse(event.equals(differentStartTimeEvent));
+
+    Event differentDurationEvent = new Event("Test Event",
+        "Test Event Description", DayType.MONDAY.rep, "10:00", "120");
     assertFalse(event.equals(differentDurationEvent));
   }
+
 }
 
 

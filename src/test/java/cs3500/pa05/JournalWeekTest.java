@@ -130,9 +130,8 @@ public class JournalWeekTest {
     assertEquals(Integer.MAX_VALUE, journalWeek.getMaxTasks());
   }
 
-
   @Test
-  public void testSaveToBujo_IOException() {
+  public void testSaveToBujoIoException() {
     journalWeek.setTitle("Invalid/Directory");
 
     assertThrows(IOException.class, () -> {

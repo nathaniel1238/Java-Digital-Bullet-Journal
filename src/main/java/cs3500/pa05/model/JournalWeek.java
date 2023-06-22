@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * The JournalWeek class implements IWeek interface and manages a week of the journal.
  */
-public class JournalWeek implements IWeek {
+public class JournalWeek implements Iweek {
 
   private String title;
 
